@@ -1,0 +1,79 @@
+<?php
+
+namespace SonodigestBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuario
+ *
+ * @ORM\Table(name="usuario", indexes={@ORM\Index(name="fk_usuario_persona_idx", columns={"idPersona"})})
+ * @ORM\Entity
+ */
+class Usuario
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=30, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     */
+    private $salt;
+
+    /**
+     * @var \Persona
+     *
+     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPersona", referencedColumnName="id")
+     * })
+     */
+    private $idpersona;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Rol", inversedBy="idusuario")
+     * @ORM\JoinTable(name="rolusuario",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idRol", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $idrol;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idrol = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

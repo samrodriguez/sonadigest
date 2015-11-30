@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Subcategoria creation</h1>
+
+    
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.nombre) }}
+    {{ form_row(form.titulo) }}
+    {{ form_row(form.descripcion) }}
+    {{ form_row(form.idcategoria) }}
+    {{ form_row(form.idproblema) }}
+        <!-- <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_subcategoria') }}">
+            Back to the list
+        </a>
+    </li>
+</ul> -->
+
+   <div class="form-grouphide col-sm-12">
+        <a href="{{ path('admin_subcategoria') }}" class="btn btn-default btn-sm" id="cancelarNuevo">Cancelar</a>
+        {{ form_widget(form.submit) }}
+    </div>
+	        
+	  
+	
+	{{ form_end(form) }}
+{% endblock %}

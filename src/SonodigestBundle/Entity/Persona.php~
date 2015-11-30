@@ -1,0 +1,68 @@
+<?php
+
+namespace SonodigestBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Persona
+ *
+ * @ORM\Table(name="persona")
+ * @ORM\Entity
+ */
+class Persona
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=100, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido", type="string", length=100, nullable=true)
+     */
+    private $apellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="correo", type="string", length=75, nullable=true)
+     */
+    private $correo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=15, nullable=true)
+     */
+    private $celular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fijo", type="string", length=15, nullable=true)
+     */
+    private $fijo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=100, nullable=true)
+     */
+    private $direccion;
+
+
+}
+

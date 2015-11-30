@@ -1,0 +1,69 @@
+<?php
+
+namespace SonodigestBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Problema
+ *
+ * @ORM\Table(name="problema")
+ * @ORM\Entity
+ */
+class Problema
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=100, nullable=true)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foto", type="string", length=255, nullable=true)
+     */
+    private $foto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=6000, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Subcategoria", inversedBy="idproblema")
+     * @ORM\JoinTable(name="problema_subcategoria",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idProblema", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idSubCategoria", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $idsubcategoria;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idsubcategoria = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
