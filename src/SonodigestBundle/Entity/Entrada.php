@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Entrada
  *
- * @ORM\Table(name="entrada", indexes={@ORM\Index(name="fk_entrada_imagenblog1_idx", columns={"idImagen"}), @ORM\Index(name="fk_entrada_categoriablog1_idx", columns={"idCategoria"})})
+ * @ORM\Table(name="entrada", @ORM\Index(name="fk_entrada_categoriablog1_idx", columns={"idCategoria"})})
  * @ORM\Entity
  */
 class Entrada
@@ -49,6 +49,14 @@ class Entrada
      */
     private $contenido;
     
+    /**
+     * @var integer
+     *
+     *
+     * @ORM\OneToOne(targetEntity="Imagenblog", mappedBy="idEntrada", cascade={"persist", "remove"})
+     */
+    private $idimagen;
+
     /**
      * @var \Categoriablog
      *
