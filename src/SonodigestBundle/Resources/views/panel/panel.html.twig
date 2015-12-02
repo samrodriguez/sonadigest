@@ -3,21 +3,26 @@
  {%block head -%} 
     {% block css -%}    
         <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
+        <link rel="stylesheet" href="{{ asset('Resources/bootstrap-3/css/bootstrap.css') }}" />
     {%- endblock %}
  {% endblock %}
 
  {% block body -%}
-    <h1>Usuario creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_usuario') }}">
-            Back to the list
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <p class="text-center"><h1>Panel Administrativo</h1></p>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="clearfix"></div>
+        <a href="{{ path('admin_categoria') }}">
+        Gestion Categoria
         </a>
-    </li>
-</ul>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts_step %}

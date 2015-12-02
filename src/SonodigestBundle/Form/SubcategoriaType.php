@@ -27,9 +27,11 @@ class SubcategoriaType extends AbstractType
             ))
             ->add('idcategoria', null, array(
                 'required' => true,
+                'label' => 'Categoria',
                 'empty_value' => 'Seleccione una categoria'
                 ))
             ->add('idproblema', 'entity', array(
+                'label' => 'Seleccione uno o mas problemas',
                 'class' => 'SonodigestBundle:Problema' ,
                 'required' => true,
                 'empty_value' => 'Seleccione un problema',

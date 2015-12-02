@@ -25,8 +25,12 @@ class EntradaType extends AbstractType
             ))
             //->add('fecha')
             ->add('contenido', 'textarea')
-            ->add('idimagen', new ImagenblogType())
-            ->add('idcategoria')
+            ->add('idimagen', new ImagenblogType(), array(
+                'label' => ' '
+            ))
+            ->add('idcategoria', null, array(
+                'label' => 'Elija una categoria'
+            ))
         ;
     }
     

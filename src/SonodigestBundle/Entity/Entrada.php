@@ -50,14 +50,6 @@ class Entrada
     private $contenido;
     
     /**
-     * @var integer
-     *
-     *
-     * @ORM\OneToOne(targetEntity="Imagenblog", mappedBy="idEntrada", cascade={"persist", "remove"})
-     */
-    private $idimagen;
-
-    /**
      * @var \Categoriablog
      *
      * @ORM\ManyToOne(targetEntity="Categoriablog")
