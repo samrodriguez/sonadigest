@@ -111,6 +111,8 @@ class Rol
     {
         return $this->idusuario;
     }
-
-    public function __toString(){return $this->nombre ? $this->nombre : '';}
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

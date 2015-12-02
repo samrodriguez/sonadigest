@@ -15,8 +15,10 @@ class RolType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('idusuario')
+            ->add('nombre', 'text', array(
+                'required' => true
+            ))
+            //->add('idusuario')
         ;
     }
     

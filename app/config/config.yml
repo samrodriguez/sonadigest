@@ -8,6 +8,9 @@ imports:
 parameters:
     locale: en
     photo.subcategoria: %kernel.root_dir%/../web/Photos/subcategoria/
+    photo.problema: %kernel.root_dir%/../web/Photos/problema/
+    photo.imagenblog: %kernel.root_dir%/../web/Photos/imagenblog/
+    photo.imagenindex: %kernel.root_dir%/../web/Photos/imagenindex/
 
 framework:
     #esi:             ~

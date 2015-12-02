@@ -15,10 +15,25 @@ class ProblemaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo')
-            ->add('foto')
-            ->add('descripcion')
-            ->add('idsubcategoria')
+            ->add('titulo','text',array(
+                'required' => true ,
+            ))
+            //->add('foto')
+            ->add('descripcion', 'textarea', array(
+                'required' => true
+            ))
+            /*->add('idsubcategoria','entity', array(
+                'class' => 'SonodigestBundle:Subcategoria',
+                'required' => true,
+                'empty_value' => 'Seleccione un problema',
+                'multiple' => false ,
+                'expanded' => false
+            ))*/
+            ->add('file',null, array(
+                    'label'=>'Foto de problema','required'=>false,
+                    'required' => true,
+                    'attr'=>array('class'=>'Problema'
+                    )))
         ;
     }
     

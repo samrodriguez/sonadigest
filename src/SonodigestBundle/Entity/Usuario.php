@@ -56,7 +56,7 @@ class Usuario
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Rol", inversedBy="idusuario")
-     * @ORM\JoinTable(name="rolusuario",
+     * @ORM\JoinTable(name="rolUsuario",
      *   joinColumns={
      *     @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
      *   },
@@ -215,6 +215,4 @@ class Usuario
     {
         return $this->idrol;
     }
-
-     public function __toString(){return $this->nombre ? $this->nombre : '';}
 }

@@ -15,12 +15,27 @@ class SubcategoriaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('titulo')
+            ->add('nombre','text', array(
+                  'required' => true
+            ))
+            ->add('titulo', 'text' , array(
+                  'required' => true
+            ))
             //->add('foto')
-            ->add('descripcion')
-            ->add('idcategoria')
-            ->add('idproblema')
+            ->add('descripcion', 'textarea', array(
+                  'required' => true
+            ))
+            ->add('idcategoria', null, array(
+                'required' => true,
+                'empty_value' => 'Seleccione una categoria'
+                ))
+            ->add('idproblema', 'entity', array(
+                'class' => 'SonodigestBundle:Problema' ,
+                'required' => true,
+                'empty_value' => 'Seleccione un problema',
+                'multiple' => true ,
+                'expanded' => true
+                ))
             ->add('file',null, array('label'=>'Foto de Subcategoria','required'=>false,
                     'attr'=>array('class'=>'Subcategoria'
                     )))

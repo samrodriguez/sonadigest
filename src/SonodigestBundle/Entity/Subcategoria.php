@@ -60,18 +60,26 @@ class Subcategoria
      * })
      */
     private $idcategoria;
-
+    
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Problema", mappedBy="idsubcategoria")
      */
     private $idproblema;
-
-    /**
+    
+     /**
      * @Assert\File(maxSize="6000000")
      */
     private $file;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idproblema = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Sets file.
@@ -92,16 +100,9 @@ class Subcategoria
     {
         return $this->file;
     }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idproblema = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
+    
+    
+    
     /**
      * Get id
      *
@@ -265,6 +266,8 @@ class Subcategoria
     {
         return $this->idproblema;
     }
-
-    public function __toString(){return $this->nombre ? $this->nombre : '';}
+    
+    public function __toString() {
+        return $this->nombre."";
+    }
 }

@@ -52,6 +52,23 @@ class ImagenindexController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            
+        if($entity->getFile()!=null){
+                    $path = $this->container->getParameter('photo.imagenindex');
+
+                    $fecha = date('Y-m-d His');
+                    $extension = $entity->getFile()->getClientOriginalExtension();
+                    $nombreArchivo = "imagenindex_".$fecha.".".$extension;
+                    $em->persist($entity);
+                    $em->flush();
+                    //var_dump($path.$nombreArchivo);
+
+                    $entity->setImagen($nombreArchivo);
+                    $entity->getFile()->move($path,$nombreArchivo);
+                    $em->persist($entity);
+                    $em->flush();
+                }    
+        
 
             return $this->redirect($this->generateUrl('admin_imagenindex_show', array('id' => $entity->getId())));
         }
@@ -191,8 +208,22 @@ class ImagenindexController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+   
+        if($entity->getFile()!=null){
+            $path = $this->container->getParameter('photo.imagenindex');
 
+            $fecha = date('Y-m-d His');
+            $extension = $entity->getFile()->getClientOriginalExtension();
+            $nombreArchivo = "imagenindex_".$fecha.".".$extension;
+
+            //var_dump($path.$nombreArchivo);
+
+            $entity->setimagen($nombreArchivo);
+
+
+            $entity->getFile()->move($path,$nombreArchivo);
+        }
+            $em->flush();
             return $this->redirect($this->generateUrl('admin_imagenindex_edit', array('id' => $id)));
         }
 

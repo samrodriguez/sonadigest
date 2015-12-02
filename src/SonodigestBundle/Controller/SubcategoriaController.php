@@ -207,6 +207,21 @@ class SubcategoriaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+        
+        if($entity->getFile()!=null){
+            $path = $this->container->getParameter('photo.subcategoria');
+
+            $fecha = date('Y-m-d His');
+            $extension = $entity->getFile()->getClientOriginalExtension();
+            $nombreArchivo = "subcategoria_".$fecha.".".$extension;
+
+            //var_dump($path.$nombreArchivo);
+
+            $entity->setfoto($nombreArchivo);
+
+
+            $entity->getFile()->move($path,$nombreArchivo);
+        }
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_subcategoria_edit', array('id' => $id)));

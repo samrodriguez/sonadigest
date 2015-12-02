@@ -3,6 +3,8 @@
 namespace SonodigestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Imagenindex
@@ -34,7 +36,11 @@ class Imagenindex
      * @ORM\Column(name="estado", type="boolean", nullable=true)
      */
     private $estado;
-
+    
+     /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
 
     /**
@@ -93,5 +99,25 @@ class Imagenindex
     public function getEstado()
     {
         return $this->estado;
+    }
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 }

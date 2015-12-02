@@ -218,6 +218,8 @@ class Persona
     {
         return $this->direccion;
     }
-
-    public function __toString(){return $this->nombre ? $this->nombre : '';}
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

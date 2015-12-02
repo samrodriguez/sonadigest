@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Entrada" table="entrada">
+    <indexes>
+      <index name="fk_entrada_imagenblog1_idx" columns="idImagen"/>
+      <index name="fk_entrada_categoriablog1_idx" columns="idCategoria"/>
+    </indexes>
+    <id name="id" type="integer" column="id"/>
+    <id name="idimagen" association-key="true"/>
+    <field name="titulo" type="string" column="titulo" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="escritapor" type="string" column="escritapor" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fecha" type="date" column="fecha" nullable="true"/>
+    <field name="contenido" type="string" column="contenido" length="6000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <one-to-one field="idimagen" target-entity="Imagenblog" fetch="LAZY">
+      <join-columns>
+        <join-column name="idImagen" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="idcategoria" target-entity="Categoriablog" fetch="LAZY">
+      <join-columns>
+        <join-column name="idCategoria" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

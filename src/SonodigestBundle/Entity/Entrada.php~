@@ -1,0 +1,76 @@
+<?php
+
+namespace SonodigestBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Entrada
+ *
+ * @ORM\Table(name="entrada", indexes={@ORM\Index(name="fk_entrada_imagenblog1_idx", columns={"idImagen"}), @ORM\Index(name="fk_entrada_categoriablog1_idx", columns={"idCategoria"})})
+ * @ORM\Entity
+ */
+class Entrada
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=200, nullable=true)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="escritapor", type="string", length=100, nullable=true)
+     */
+    private $escritapor;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="date", nullable=true)
+     */
+    private $fecha;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenido", type="string", length=6000, nullable=true)
+     */
+    private $contenido;
+
+    /**
+     * @var \Imagenblog
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Imagenblog")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idImagen", referencedColumnName="id")
+     * })
+     */
+    private $idimagen;
+
+    /**
+     * @var \Categoriablog
+     *
+     * @ORM\ManyToOne(targetEntity="Categoriablog")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idCategoria", referencedColumnName="id")
+     * })
+     */
+    private $idcategoria;
+
+
+}
+

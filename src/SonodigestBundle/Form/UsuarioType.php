@@ -19,8 +19,12 @@ class UsuarioType extends AbstractType
             ->add('password')
             ->add('salt')
             ->add('idpersona')
-            ->add('idrol')
-        ;
+            ->add('idrol' , 'entity', array(
+                'label' => 'Tipo de rol',
+                'class' => 'SonodigestBundle:Rol' ,
+                'multiple'  => true, 
+                'expanded'  => true)
+        ); 
     }
     
     /**

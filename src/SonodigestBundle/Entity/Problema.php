@@ -1,6 +1,8 @@
 <?php
 
 namespace SonodigestBundle\Entity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -56,6 +58,11 @@ class Problema
      * )
      */
     private $idsubcategoria;
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
     /**
      * Constructor
@@ -149,27 +156,27 @@ class Problema
     }
 
     /**
-     * Add idsubcategorium
+     * Add idsubcategoria
      *
-     * @param \SonodigestBundle\Entity\Subcategoria $idsubcategorium
+     * @param \SonodigestBundle\Entity\Subcategoria $idsubcategoria
      *
      * @return Problema
      */
-    public function addIdsubcategorium(\SonodigestBundle\Entity\Subcategoria $idsubcategorium)
+    public function addIdsubcategoria(\SonodigestBundle\Entity\Subcategoria $idsubcategoria)
     {
-        $this->idsubcategoria[] = $idsubcategorium;
+        $this->idsubcategoria[] = $idsubcategoria;
 
         return $this;
     }
 
     /**
-     * Remove idsubcategorium
+     * Remove idsubcategoria
      *
-     * @param \SonodigestBundle\Entity\Subcategoria $idsubcategorium
+     * @param \SonodigestBundle\Entity\Subcategoria $idsubcategoria
      */
-    public function removeIdsubcategorium(\SonodigestBundle\Entity\Subcategoria $idsubcategorium)
+    public function removeIdsubcategoria(\SonodigestBundle\Entity\Subcategoria $idsubcategoria)
     {
-        $this->idsubcategoria->removeElement($idsubcategorium);
+        $this->idsubcategoria->removeElement($idsubcategoria);
     }
 
     /**
@@ -181,6 +188,28 @@ class Problema
     {
         return $this->idsubcategoria;
     }
+    
+    public function __toString() {
+        return $this->titulo;
+    }
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
 
-    public function __toString(){return $this->titulo ? $this->titulo : '';}
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 }

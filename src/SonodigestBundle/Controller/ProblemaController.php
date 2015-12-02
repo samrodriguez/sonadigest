@@ -52,6 +52,22 @@ class ProblemaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+        //Esta parte es para la subida de imagen    
+        if($entity->getFile()!=null){
+                    $path = $this->container->getParameter('photo.problema');
+
+                    $fecha = date('Y-m-d His');
+                    $extension = $entity->getFile()->getClientOriginalExtension();
+                    $nombreArchivo = $entity->getId()."-".$fecha.".".$extension;
+                    $em->persist($entity);
+                    $em->flush();
+                    //var_dump($path.$nombreArchivo);
+
+                    $entity->setFoto($nombreArchivo);
+                    $entity->getFile()->move($path,$nombreArchivo);
+                    $em->persist($entity);
+                    $em->flush();
+                }
 
             return $this->redirect($this->generateUrl('admin_problema_show', array('id' => $entity->getId())));
         }
@@ -191,6 +207,20 @@ class ProblemaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+        if($entity->getFile()!=null){
+            $path = $this->container->getParameter('photo.problema');
+
+            $fecha = date('Y-m-d His');
+            $extension = $entity->getFile()->getClientOriginalExtension();
+            $nombreArchivo = "problema_".$fecha.".".$extension;
+
+            //var_dump($path.$nombreArchivo);
+
+            $entity->setfoto($nombreArchivo);
+
+
+            $entity->getFile()->move($path,$nombreArchivo);
+        }
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_problema_edit', array('id' => $id)));

@@ -15,7 +15,10 @@ class ImagenindexType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imagen')
+           // ->add('imagen')
+             ->add('file',null, array('label'=>'Foto de Subcategoria','required'=>false,
+                    'attr'=>array('class'=>'Imagenindex'
+                    )))
             ->add('estado')
         ;
     }
