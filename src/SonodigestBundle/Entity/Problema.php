@@ -47,15 +47,11 @@ class Problema
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Subcategoria", inversedBy="idproblema")
-     * @ORM\JoinTable(name="problema_subcategoria",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idProblema", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idSubCategoria", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToMany(targetEntity="Subcategoria", mappedBy="idproblema")
+     *//**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Subcategoria", mappedBy="idproblema")
      */
     private $idsubcategoria;
     

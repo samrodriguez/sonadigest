@@ -1,9 +1,10 @@
-{% extends '::base.html.twig' %}
+{#{% extends '::base.html.twig' %}#}
 
 {% block body -%}
-    <h1>Subcategoria list</h1>
+    
+    <h1>Lista de Subcategorias</h1>
 
-    <table class="records_list">
+    <table class="records_list" border="1" cellspacing=1>
         <thead>
             <tr>
                 <th>Id</th>
@@ -11,7 +12,7 @@
                 <th>Titulo</th>
                 <th>Foto</th>
                 <th>Descripcion</th>
-                <th>Actions</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -25,10 +26,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">Ver</a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">Editar</a>
                     </li>
                 </ul>
                 </td>
@@ -39,9 +40,22 @@
 
         <ul>
         <li>
-            <a href="{{ path('admin_subcategoria_new') }}">
-                Create a new entry
-            </a>
+            <h3> 
+                <a href="{{ path('admin_subcategoria_new') }}">
+                    Crear una subcategoria
+                </a>
+            </h3>
         </li>
-    </ul>
-    {% endblock %}
+        <li>
+            <h3> 
+                <a href="{{ path('admin_panel') }}">
+                    Regresar al panel administrativo
+                </a>
+            </h3>
+        </li>
+    </ul>     
+{% endblock %}
+
+{% block javascripts_step %}
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+{% endblock %}

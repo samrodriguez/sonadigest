@@ -31,7 +31,7 @@ class ProblemaType extends AbstractType
             ))*/
             ->add('file',null, array(
                     'label'=>'Foto de problema','required'=>false,
-                    'required' => true,
+                    'required' => false,
                     'attr'=>array('class'=>'Problema'
                     )))
         ;

@@ -3,7 +3,7 @@
 {% block body -%}
     <h1>Subcategoria</h1>
 
-    <table class="record_properties">
+    <table class="record_properties" border="1" cellspacing="1">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -31,12 +31,12 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('admin_subcategoria') }}">
-            Back to the list
+            Regresar a la lista 
         </a>
     </li>
     <li>
         <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">
-            Edit
+            Editar
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

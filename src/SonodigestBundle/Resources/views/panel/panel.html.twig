@@ -12,14 +12,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <p class="text-center"><h1>Panel Administrativo</h1></p>
+            <div class="col-md-4 text-center" style="margin-top: 100px;">
+                <p><h1>Panel Administrativo</h1></p>
             </div>
             <div class="col-md-4"></div>
             <div class="clearfix"></div>
-        <a href="{{ path('admin_categoria') }}">
-        Gestion Categoria
-        </a>
+            <div class="col-md-4 text-center">
+                <div style="margin-top: 100px;">
+                    <a href="{{ path('admin_categoria') }}">
+                        Gestion Categoria
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div style="margin-top: 100px;">
+                    <a href="{{ path('admin_subcategoria') }}">
+                        Gestion Subcategoria
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div style="margin-top: 100px;">
+                    <a href="{{ path('admin_problema') }}">
+                        Gestion Problema
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 

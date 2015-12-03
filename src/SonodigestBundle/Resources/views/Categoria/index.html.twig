@@ -1,13 +1,13 @@
 
 {% block body -%}
-    <h1>Categoria list</h1>
+    <h1>Lista de Categoria</h1>
 
-    <table class="records_list">
+    <table class="records_list" border="1" cellspacing="1">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Actions</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -18,10 +18,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">Ver</a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}">Editar</a>
                     </li>
                 </ul>
                 </td>
@@ -32,9 +32,18 @@
 
         <ul>
         <li>
-            <a href="{{ path('admin_categoria_new') }}">
-                Create a new entry
-            </a>
+            <h4>
+                <a href="{{ path('admin_categoria_new') }}">
+                    Crear una nueva Categoria
+                </a>
+            </h4>
+        </li>
+        <li>
+            <h4>
+                <a href="{{ path('admin_panel') }}">
+                    Regresar al panel administrativo
+                </a>
+            </h4>
         </li>
     </ul>
     {% endblock %}
