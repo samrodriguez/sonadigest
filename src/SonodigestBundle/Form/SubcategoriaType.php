@@ -23,7 +23,11 @@ class SubcategoriaType extends AbstractType
             ))
             //->add('foto')
             ->add('descripcion', 'textarea', array(
-                  'required' => true
+                  'required' => true,
+                  'attr' => array(
+                        'class' => 'tinymce',
+                        'data-theme' => 'bbcode' // Skip it if you want to use default theme
+                    )
             ))
             ->add('idcategoria', null, array(
                 'required' => true,
