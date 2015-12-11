@@ -1,0 +1,105 @@
+.hero {
+  position: relative;
+  background: url(http://www.vitafarmaecuador.com/images/cat-headers/doctora3.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  padding-top: 110px;
+  min-height: 350px;
+  letter-spacing: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+.hero h1 {
+  font-size: 50px;
+  line-height: 1.3;
+}
+.hero h1 span {
+  font-size: 25px;
+  color: #f6eb14;
+  border-bottom: 2px solid #f6eb14;
+  padding-bottom: 12px;
+  line-height: 3;
+}
+
+.herov {
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  padding-top: 110px;
+  min-height: 500px;
+  letter-spacing: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+.herov h1 {
+  font-size: 50px;
+  line-height: 1.3;
+}
+.herov h1 span {
+  font-size: 25px;
+  color: #f6eb14;
+  border-bottom: 2px solid #f6eb14;
+  padding-bottom: 12px;
+  line-height: 3;
+}
+
+.animate {
+        -webkit-animation: spinit 0.2s 5;
+        -moz-animation: spinit 0.2s 5;
+        animation: spinit 0.2s 5;
+      }
+      @-webkit-keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+      @-moz-keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+      @keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+
+      /* Setting the required value to top will make the spinner end at that number */
+
+      #digit1 {
+        top: -14em;
+        /* -4em means 5 will be the number */
+      }
+      #digit2 {
+        top: -2em;
+      }
+      #digit3 {
+        top: 0em;
+      }
+
+
+  span {
+    position: relative;
+  }

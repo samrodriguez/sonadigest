@@ -1,49 +1,84 @@
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Lista de Categorias{% endblock %}
+{% block bod -%}
+    {#<h1>Lista de Categoria</h1>#}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+                <!-- Aqui se dibuja el formulario-->
+                {{ form_start(form) }}
+                <div class="text-center">
+                    <div class="col-md-5 text-right">
+                        {{ form_label(form.nombre) }} 
+                    </div>    
+                    <div class="col-md-6 text-left">
+                        {{ form_widget(form.nombre) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="clearfix"></div>
 
-{% block body -%}
-    <h1>Lista de Categoria</h1>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><div class="text-center">
+                    {#<a href="{{ path('admin_categoria') }}">
+                        <div class="botonpanel"> Regresar a la listaxx </div>
+                    </a>#}
+                    {{ form_widget(form.submit) }}
+                </div></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {{ form_end(form) }}
 
-    <table class="records_list" border="1" cellspacing="1">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="tablapanel">
+        <div class="container">
+            <div class="row">
+                {#<div class="col-md-2"></div>#}
+                <div class="col-md-12">
 
-        <ul>
-        <li>
-            <h4>
-                <a href="{{ path('admin_categoria_new') }}">
-                    Crear una nueva Categoria
-                </a>
-            </h4>
-        </li>
-        <li>
-            <h4>
-                <a href="{{ path('admin_panel') }}">
-                    Regresar al panel administrativo
-                </a>
-            </h4>
-        </li>
-    </ul>
-    {% endblock %}
+                    <table class="table-bordered" style="margin:0 auto;">
+                        <thead>
+                            <tr>
+                                {#<th>Id</th>#}
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    {#<td><a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                                    <td class="text-center">{{ entity.nombre }}</td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('admin_categoria_show', { 'id': entity.id }) }}">Ver</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}">Editar</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+                {#<div class="col-md-3"></div>#}
+                <div class="clearfix"></div>
+
+                {#<div class="col-md-12" style="text-center">
+                    <div class="text-center">
+                        <a href="{{ path('admin_categoria_new') }}"><div class="botonpanel">Crear una nueva Categoria</div></a>
+                    </div>
+                </div>#}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

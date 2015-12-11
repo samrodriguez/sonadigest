@@ -1,32 +1,38 @@
-{% extends '::base.html.twig' %}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Crear Categoria{% endblock %}
+{% block bod -%}
 
-{% block body -%}
-    <h1>Categoria</h1>
+    <div class="container">
+        <div class="row">
+            {#<div class="col-md-3"></div>#}
+            <div class="col-md-12">
+                <table class="table-bordered" style="margin: 0 auto; width: 60%;" >
+                    <tbody>
+                        <tr>
+                            <th class="text-center">Id</th>
+                            <td class="text-center">{{ entity.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Nombre</th>
+                            <td class="text-center">{{ entity.nombre }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {#<div class="col-md-4"></div>         #}
+            <div class="clearfix"></div>
 
-    <table class="record_properties" border="1" cellspacing="1">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <a href="{{ path('admin_categoria') }}"><div class="botonpanel">Regresar a la lista</div></a>
+            </div>
+            <div class="col-md-3">
+                <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar categoria</div></a>
+            </div>
+            <div class="col-md-3"></div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_categoria') }}">
-            Regresar a la lista
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_categoria_edit', { 'id': entity.id }) }}">
-            Editar categoria actual
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <!--Area de botonces-->
+            
+        </div>
+    </div>
 {% endblock %}
