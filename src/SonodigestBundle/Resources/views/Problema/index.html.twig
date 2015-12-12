@@ -1,41 +1,47 @@
-{% extends '::base.html.twig' %}
+{#{% extends '::base.html.twig' %}#}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Lista de Problemas{% endblock %}
+{% block bod -%}
 
-{% block body -%}
-    <h1>Lista de problemas</h1>
-
-    <table class="records_list" border="1" cellspacing="1">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Foto</th>
-                <th>Descripcion</th>
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_problema_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.titulo }}</td>
-                <td>{{ entity.foto }}</td>
-                <td>{{ entity.descripcion }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_problema_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_problema_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titulo</th>
+                            <th>Foto</th>
+                            <th>Descripcion</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td><a href="{{ path('admin_problema_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                <td>{{ entity.titulo }}</td>
+                                <td>{{ entity.foto }}</td>
+                                <td style="width: 50%;">{{ entity.descripcion | raw }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_problema_show', { 'id': entity.id }) }}">Ver</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_problema_edit', { 'id': entity.id }) }}">Editar</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ul>
         <li>
             <h4>
                 <a href="{{ path('admin_problema_new') }}">
@@ -43,7 +49,7 @@
                 </a>
             </h4>
         </li>
-         <li>
+        <li>
             <h4>
                 <a href="{{ path('admin_panel') }}">
                     Regresar al panel administrativo
@@ -51,4 +57,4 @@
             </h4>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

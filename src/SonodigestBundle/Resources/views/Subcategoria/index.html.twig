@@ -84,7 +84,7 @@
                                     <td class="text-center">{{ entity.nombre }}</td>
                                     <td class="text-center">{{ entity.titulo }}</td>
                                     <td class="text-center">{{ entity.foto }}</td>
-                                    <td class="text-center">{{ entity.descripcion | replace({"<span>" : " " ,"</span>" : " " ,"<p>" : " " , "</p>" : " ", "&nbsp;" : " " , "<strong>" : " " , "</strong>" : " ", "<pre>" : " " , "</pre>" : " ", "acute;" : "" , "&" : ""})}}</td>
+                                    <td class="text-justify">{{ entity.descripcion | raw}}</td>
                                     <td>
                                         <ul>
                                             <li>
