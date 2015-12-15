@@ -29,10 +29,15 @@ class ProblemaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SonodigestBundle:Problema')->findAll();
+        $entities = $em->getRepository('SonodigestBundle:Problema')->findBy(array(),array('id' => 'DESC'));
+        
+        $entity = new Problema();
+        $form   = $this->createCreateForm($entity);
 
         return array(
             'entities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
     /**
@@ -69,7 +74,7 @@ class ProblemaController extends Controller
                     $em->flush();
                 }
 
-            return $this->redirect($this->generateUrl('admin_problema_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_problema', array('id' => $entity->getId())));
         }
 
         return array(
@@ -92,7 +97,9 @@ class ProblemaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create',
+            'attr'=>array('class'=>'botonpanel'))    
+            );
 
         return $form;
     }
@@ -181,7 +188,9 @@ class ProblemaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update',
+            'attr'=>array('class'=>'botonpanel'))
+            );
 
         return $form;
     }
@@ -223,7 +232,7 @@ class ProblemaController extends Controller
         }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_problema_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_problema', array('id' => $id)));
         }
 
         return array(
@@ -270,7 +279,9 @@ class ProblemaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_problema_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete',
+                'attr'=>array('class'=>'botonpanel'))
+            )
             ->getForm()
         ;
     }

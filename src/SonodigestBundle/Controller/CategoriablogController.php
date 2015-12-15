@@ -29,10 +29,16 @@ class CategoriablogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SonodigestBundle:Categoriablog')->findAll();
+//        $entities = $em->getRepository('SonodigestBundle:Categoriablog')->findAll();
+        $entities = $em->getRepository('SonodigestBundle:Categoriablog')->findBy(array(),array('id' => 'DESC'));
 
+        $entity = new Categoriablog();
+        $form   = $this->createCreateForm($entity);
+        
         return array(
             'entities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
     /**
@@ -53,7 +59,7 @@ class CategoriablogController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_categoriablog_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_categoriablog', array('id' => $entity->getId())));
         }
 
         return array(
@@ -76,7 +82,9 @@ class CategoriablogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create',
+            'attr'=>array('class'=>'botonpanel'))
+            );
 
         return $form;
     }
@@ -111,6 +119,7 @@ class CategoriablogController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SonodigestBundle:Categoriablog')->find($id);
+        
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find categoriablog entity.');
@@ -165,7 +174,7 @@ class CategoriablogController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update','attr'=>array('class'=>'botonpanel')));
 
         return $form;
     }
@@ -193,7 +202,7 @@ class CategoriablogController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_categoriablog_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_categoriablog', array('id' => $id)));
         }
 
         return array(
@@ -240,7 +249,7 @@ class CategoriablogController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_categoriablog_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete','attr'=>array('class'=>'botonpanel')))
             ->getForm()
         ;
     }

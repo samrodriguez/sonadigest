@@ -5,6 +5,59 @@
 
     <div class="container">
         <div class="row">
+            
+            <div class="col-md-6 text-center">
+                <!-- Aqui se dibuja el formulario-->
+                {{ form_start(form) }}
+                <div class="text-center" >
+                    <div class="col-md-2 text-left" style="padding-left: 0px;">
+                        {{ form_label(form.titulo) }} 
+                    </div>    
+                    <div class="col-md-6 text-left">
+                        {{ form_widget(form.titulo) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="clearfix"></div>
+            
+            <div class="col-md-12">
+                {{ form_label(form.descripcion) }} 
+                {{ form_widget(form.descripcion) }}
+            </div>
+            <div class="clearfix"></div>
+            
+            <div class="col-md-6 text-center">
+                <!-- Aqui se dibuja el formulario-->
+                {{ form_start(form) }}
+                <div class="text-center">
+                    <div class="col-md-3 text-left" style="padding-left: 0px; margin-top: 10px;">
+                        {{ form_label(form.file) }} 
+                    </div>    
+                    <div class="col-md-9 text-left" style=" margin-top: 10px;">
+                        {{ form_widget(form.file) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+            
+            <div class="clearfix"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><div class="text-center">
+                    {#<a href="{{ path('admin_categoria') }}">
+                        <div class="botonpanel"> Regresar a la listaxx </div>
+                    </a>#}
+                    {{ form_widget(form.submit) }}
+                </div></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {{ form_end(form) }}
+    
+    
+    <div class="container" style="padding-top: 20px;">
+        <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <table class="table-bordered">
@@ -41,7 +94,7 @@
             </div>
         </div>
     </div>
-    <ul>
+    {#<ul>
         <li>
             <h4>
                 <a href="{{ path('admin_problema_new') }}">
@@ -56,5 +109,17 @@
                 </a>
             </h4>
         </li>
-    </ul>
+    </ul>#}
+{% block javascripts_step %}
+<script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+<script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+<script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+<script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        validarUsuario();
+    });
+     {{ tinymce_init() }}
+</script>
+{% endblock %}
 {% endblock %}

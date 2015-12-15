@@ -30,19 +30,19 @@
                             {% block imagen %}
                                 {% include 'SonodigestBundle:Layout:imagenpanel.html.twig'%}
                             {% endblock %}
-                           
+
                             <div class="col-md-4"></div>
                             <div class="col-md-4 text-center" style="margin-top: 5px;">
                                 <p><h1>Panel Administrativo</h1></p>
                             </div>
                             <div class="col-md-4"></div>
                             <div class="clearfix"></div>
-                            
-                             <!-- Botones Panel -->
+
+                            <!-- Botones Panel -->
                             {% block botones %}
                                 {% include 'SonodigestBundle:Layout:botonespanel.html.twig'%}
                             {% endblock %}
-                          
+
                             <div class="clearfix"></div>
 
                             <div class="col-md-12 text-center hr">
@@ -50,7 +50,7 @@
                             </div>
                             <a href="{{ path('admin_categoria') }}">
                                 <div class="clearfix"></div>
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-3 text-center">
                                     <div class="color1" style="margin-top: 10px;">
 
                                         <h4>Gestion Categoria</h4>
@@ -59,20 +59,29 @@
                                 </div>
                             </a>
                             <a href="{{ path('admin_subcategoria') }}">
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-3 text-center">
                                     <div class="color2" style="margin-top: 10px;">
-                                        
+
                                         <h4>Gestion Subcategoria</h4>
-                                        
+
                                     </div>
                                 </div>
                             </a>
                             <a href="{{ path('admin_problema') }}">
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-3 text-center">
                                     <div class="color1" style="margin-top: 10px;">
-                                        
+
                                         <h4>Gestion Problema</h4>
-                                        
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_categoriablog') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color2" style="margin-top: 10px;">
+
+                                        <h4>Gestion Subcategoria de Blog</h4>
+
                                     </div>
                                 </div>
                             </a>
