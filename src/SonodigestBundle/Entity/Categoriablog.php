@@ -28,7 +28,10 @@ class Categoriablog
      */
     private $nombre;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="Entrada", mappedBy="idcategoria", cascade={"persist", "remove"})
+     */
+    private $entrada;
 
     /**
      * Get id
@@ -67,4 +70,14 @@ class Categoriablog
     public function __toString() {
         return $this->nombre;
     }
+    
+    
+    function getEntrada() {
+        return $this->entrada;
+    }
+
+    function setEntrada($entrada) {
+        $this->entrada= $entrada;
+    }
+    
 }
