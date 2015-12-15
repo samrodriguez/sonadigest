@@ -1,52 +1,49 @@
-<div class="col-md-8">
-					<h2 class="text-center" style="color: #828282; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px;">TITULO DE SUBCATEGORIA AQUI</h2>
-					<div style="width: 100px; border-top: 2px solid #76B9C4; margin-left: auto; margin-right: auto; margin-top: 10px;"></div>
-					<div style="height: 30px;"></div>
-					<p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</strong></p>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-					<p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</strong></p>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</strong></p>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<p>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</strong></p>
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<p> Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<!-- Que Problemas soluciona -->
-					<div style="background-color: #F6F6F6; width: 100%; max-width: 100%; height: 50px;">
-						<h2 class="text-center" style="color: #828282; font-family: 'Montserrat', sans-serif; font-weight: 400; padding-top: 10px; font-size: 18px;">QUE PROBLEMAS SOLUCIONA?</h2>
-						<div style="width: 60px; border-top: 2px solid #76B9C4; margin-left: auto; margin-right: auto; margin-top: 10px;"></div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"></div>
-						<div class="col-md-6">
-							<div style="width: 100%; max-width: 100%; height: 30px; background-color: #76B9C4; margin-top: 20px;"> 
-								<p class="text-uppercase text-center" style="color: #FFFFFF; line-height: 30px; font-family: 'Montserrat', sans-serif; font-weight: 400; text-align: center;">Apendicitis</p> 
-							</div>
-						</div>
-						<div class="col-md-3"></div>
-					</div>
-				</div>
+
+{% if registro %}
+    
+    
+        <h2 class="text-center" style="color: #828282; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 18px;">{{registro.titulo}}</h2>
+        <div style="width: 100px; border-top: 2px solid #76B9C4; margin-left: auto; margin-right: auto; margin-top: 10px;"></div>
+        <div style="height: 30px;"></div>
+        {{registro.descripcion|raw}}
+        <!-- Que Problemas soluciona -->
+        <div style="background-color: #F6F6F6; width: 100%; max-width: 100%; height: 50px;">
+            <h2 class="text-center" style="color: #828282; font-family: 'Montserrat', sans-serif; font-weight: 400; padding-top: 10px; font-size: 18px;">QUE PROBLEMAS SOLUCIONA?</h2>
+            <div style="width: 60px; border-top: 2px solid #76B9C4; margin-left: auto; margin-right: auto; margin-top: 10px;"></div>
+        </div>
+        <div class="row">
+            {% if registro.idproblema|length is divisible by(2)%}
+                {% for problema in registro.idproblema %}
+                    <div class="col-md-6">
+                        <div style="width: 100%; max-width: 100%; height: 30px; background-color: #76B9C4; margin-top: 20px;"> 
+                            <p class="text-uppercase text-center" style="color: #FFFFFF; line-height: 30px; font-family: 'Montserrat', sans-serif; font-weight: 400; text-align: center;">{{problema.titulo}}</p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}   
+                {% for key, problema in registro.idproblema %}
+                    {% if loop.last %}
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div style="width: 100%; max-width: 100%; height: 30px; background-color: #76B9C4; margin-top: 20px;"> 
+                                <p class="text-uppercase text-center" style="color: #FFFFFF; line-height: 30px; font-family: 'Montserrat', sans-serif; font-weight: 400; text-align: center;">Apendicitis</p> 
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    {% else %}
+                        <div class="col-md-6">
+                            <div style="width: 100%; max-width: 100%; height: 30px; background-color: #76B9C4; margin-top: 20px;"> 
+                                <p class="text-uppercase text-center" style="color: #FFFFFF; line-height: 30px; font-family: 'Montserrat', sans-serif; font-weight: 400; text-align: center;">{{problema.titulo}}</p> 
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    
+
+{% else %}
+    
+    Contenido vacio
+    
+{% endif %}

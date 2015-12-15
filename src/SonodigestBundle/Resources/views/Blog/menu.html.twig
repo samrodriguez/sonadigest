@@ -1,7 +1,6 @@
 <div class="col-md-3">
     <div style="margin-top: 30px;"></div>
-    <button class="btn text-uppercase blogbotonnav">Categoria 1</button>
-    <button class="btn text-uppercase blogbotonnav">Categoria 2</button>
-    <button class="btn text-uppercase blogbotonnav">Categoria 3</button>
-    <button class="btn text-uppercase blogbotonnav">Categoria 4</button>
+    {% for blog in categoriasBlog%}
+        <a href="{{path('admin_blog_entradas',{id:blog.id})}}" class="btn text-uppercase blogbotonnav entradasBlog">{{blog.nombre}}</a>
+    {% endfor %}
 </div>

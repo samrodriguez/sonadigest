@@ -33,7 +33,9 @@
                                 {% include 'SonodigestBundle:Blog:menu.html.twig'%}
                             {% endblock %}
                             {% block contenido %}
-                                {% include 'SonodigestBundle:Blog:contenido.html.twig'%}
+                                <div id="entradasBlog">
+                                    {% include 'SonodigestBundle:Blog:contenido.html.twig'%}
+                                </div>
                             {% endblock %}
                         </div>
                     </div>
@@ -47,7 +49,7 @@
                     <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
                     <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
                     <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
-                    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+                    
                     <script src="{{asset('http://snapwidget.com/js/snapwidget.js')}}"></script>
                     <!-- jQuery (Necesario para que los Plugins de Bootstrap) -->
                     <script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
@@ -55,7 +57,13 @@
                     <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
                     <script>
                         $(document).ready(function () {
-                            validarUsuario();
+                            $('.entradasBlog').on('click', function(){
+        
+                                var href = $(this).attr('href');
+                                $('#entradasBlog').load(href);
+                                return false;
+                            });
+                            
                         });
                     </script>
                 {% endblock %}

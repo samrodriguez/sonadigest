@@ -28,6 +28,10 @@ class Categoria
      */
     private $nombre;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Subcategoria", mappedBy="idcategoria", cascade={"persist", "remove"})
+     */
+    private $subcategoria;
 
 
     /**
@@ -62,6 +66,14 @@ class Categoria
     public function getNombre()
     {
         return $this->nombre;
+    }
+    
+    function getSubcategoria() {
+        return $this->subcategoria;
+    }
+
+    function setSubcategoria($subcategoria) {
+        $this->subcategoria = $subcategoria;
     }
     
     public function __toString() {
