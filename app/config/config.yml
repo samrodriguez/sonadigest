@@ -11,6 +11,7 @@ parameters:
     photo.problema: %kernel.root_dir%/../web/Photos/problema/
     photo.imagenblog: %kernel.root_dir%/../web/Photos/imagenblog/
     photo.imagenindex: %kernel.root_dir%/../web/Photos/imagenindex/
+    photo.carrusel: %kernel.root_dir%/../web/Photos/carrusel/
 
 framework:
     #esi:             ~
