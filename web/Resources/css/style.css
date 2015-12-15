@@ -103,3 +103,70 @@
   span {
     position: relative;
   }
+
+  .navbut {
+    display: inline; padding: 20px; font-family: 'Montserrat', sans-serif; font-weight: 400px; font-size: 13px;
+  }
+
+ul > li.active > a {
+  color: #D46D13;
+}
+
+.clicknav ul.sub-nav {
+    display: none;
+}
+
+.clicknav ul.visible {
+    display: block;
+}
+
+.blogtitulo {
+  color: #828282; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  font-size: 24px;
+}
+.blogboton {
+  height: 30px; 
+  width: 200px; 
+  margin-right: 15px; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  color: #FFF; 
+  margin-bottom: 15px; 
+  background-color: #76B9C4; 
+  text-align: center;
+  border-radius: 0px;
+  outline: 0;
+}
+.blogboton:hover,
+.blogboton:focus,
+.blogboton.focus
+.blogboton.active {
+  color: #FFF;
+  background-color: #39CCCC;
+  border-radius: 0px;
+  outline: 0;
+}
+
+.blogbotonnav {
+  width: 100%; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  color: #FFF; 
+  margin-bottom: 10px;
+  background-color: #76B9C4; 
+  text-align: center; 
+  outline: 0;
+}
+.blogbotonnav:hover,
+.blogbotonnav:focus,
+.blogbotonnav.focus
+.blogbotonnav.active {
+  color: #FFF;
+  background-color: #39CCCC;
+  outline: 0;
+}
+button {
+   outline: 0;
+}
+a {
+   outline: 0;
+}

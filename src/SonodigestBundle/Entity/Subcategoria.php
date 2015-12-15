@@ -54,7 +54,7 @@ class Subcategoria
     /**
      * @var \Categoria
      *
-     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="subcategoria", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idCategoria", referencedColumnName="id")
      * })

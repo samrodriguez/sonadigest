@@ -1,0 +1,18 @@
+<div class="col-md-9">
+    <!-- Blog Item -->
+    {% for entrada in entradas %}
+        <img src="{{entrada.idimagen.imagen1}}" style="max-width: 100%; width: 100%; margin-top: 30px;">
+        <h2 class="text-uppercase blogtitulo">{{entrada.titulo}} </h2>
+        <p style="font-weight: 300; font-size: 12px;">Publicado el {{ entrada.fecha|date("d-m-Y") }} | Por: {{entrada.escritapor}} | Categoria: {{entrada.idcategoria}}</p>
+        <p style="font-weight: 300; font-size: 13px;">
+            
+            {{ entrada.contenido|length > 150 ? entrada.contenido|slice(0, 150) ~ '...' : entrada.contenido  }}
+        </p>
+        <div class="pull-right"><button class="btn text-uppercase blogboton">LEER MÁS</button></div>
+        <div style="margin-top: 60px;"></div>
+        <hr>
+        <!-- Fin Blog Item -->
+    {% endfor %}
+
+    
+</div>
