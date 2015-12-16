@@ -29,10 +29,15 @@ class CategoriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SonodigestBundle:Categoria')->findAll();
+        $entities = $em->getRepository('SonodigestBundle:Categoria')->findBy(array(),array('id' => 'DESC'));
+        
+        $entity = new Categoria();
+        $form   = $this->createCreateForm($entity);
 
         return array(
             'entities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
     /**
@@ -53,7 +58,8 @@ class CategoriaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_categoria_show', array('id' => $entity->getId())));
+            //return $this->redirect($this->generateUrl('admin_categoria_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_categoria'));
         }
 
         return array(
@@ -76,7 +82,9 @@ class CategoriaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear',
+            'attr'=>array('class'=>'botonpanel'))
+            );
 
         return $form;
     }
@@ -165,7 +173,7 @@ class CategoriaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update','attr'=>array('class'=>'botonpanel')));
 
         return $form;
     }
@@ -193,7 +201,7 @@ class CategoriaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_categoria_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_categoria', array('id' => $id)));
         }
 
         return array(
@@ -240,7 +248,7 @@ class CategoriaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_categoria_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete','attr'=>array('class'=>'botonpanel')))
             ->getForm()
         ;
     }

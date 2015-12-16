@@ -1,0 +1,66 @@
+{#{% extends '::base.html.twig' %}#}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        {%block head -%} 
+            {% block meta -%}
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            {% endblock%}
+            <!-- Las 3 meta tags de arriba siempre tienen que incluirse y todo lo demas tiene que venir despues -->
+            {% block title -%}<title>{% block titlename -%}Sonodigest - El Salvador{% endblock %}</title>{% endblock %}
+
+            <!-- Declaracion de Archivo de Bootstrap -->	
+            {% block css -%}    
+                <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
+                {# <link rel="stylesheet" href="{{ asset('Resources/bootstrap-3/css/bootstrap.css') }}" />#}
+                <link rel="stylesheet" href="{{ asset('Resources/css/bootstrap.css') }}" />
+                <link rel="stylesheet" href="{{ asset('Resources/css/style.css') }}" />
+                {%- endblock %}
+                {%- endblock%}
+            </head>
+            <body>
+
+                {% block body -%}
+                    
+                    <!-- Barra de navegacion -->
+                    {% block navigation %}
+                        {% include 'SonodigestBundle:Layout:navigation.html.twig'%}
+                    {% endblock %}
+                    {#banner de nosotros#}
+                    {% block banner %}
+                        {% include 'SonodigestBundle:Nosotros:banner.html.twig'%}
+                    {% endblock %}
+                    <!-- Historia clinica -->
+                    {% block historia %}
+                        {% include 'SonodigestBundle:Nosotros:historia.html.twig'%}
+                    {% endblock %}
+                    <!-- Doctores clinica -->
+                    {% block doctores %}
+                        {% include 'SonodigestBundle:Nosotros:doctores.html.twig'%}
+                    {% endblock %}
+                    {#Pie de pagina#}
+                    {% block foot %}
+                        {% include 'SonodigestBundle:Layout:footer.html.twig'%}
+                    {% endblock %}
+                    
+                {% endblock %}
+                {% block javascripts_step %}
+                    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+                    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+                    <script src="{{asset('http://snapwidget.com/js/snapwidget.js')}}"></script>
+                    <!-- jQuery (Necesario para que los Plugins de Bootstrap) -->
+                    <script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
+                    <!-- Aqui estan todos los Plugins que contiene el Framework de Boostrap -->
+                    <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
+                    <script>
+                        $(document).ready(function () {
+                            validarUsuario();
+                        });
+                    </script>
+                {% endblock %}
+            </body>
+        </html>

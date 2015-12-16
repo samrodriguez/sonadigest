@@ -1,44 +1,112 @@
-{#{% extends '::base.html.twig' %}#}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Lista de Subcategorias{% endblock %}
+{% block cs -%}    
+    <link rel="stylesheet" href="{{ asset('Resources/css/espacioprob.css') }}" />
+{%- endblock %}
 
-{% block body -%}
-    
-    <h1>Lista de Subcategorias</h1>
+{% block bod -%}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(form.nombre) }}</div>
+                    {{ form_widget(form.nombre) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(form.titulo) }}</div>
+                    {{ form_widget(form.titulo) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; ">
+                    {{ form_label(form.descripcion) }}
+                    {{ form_widget(form.descripcion) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(form.idcategoria) }}</div>
+                    {{ form_widget(form.idcategoria) }}
+                </div>
+                {{ form_label(form.idproblema) }}
+                <div class="row" style="margin: 10px 0px; ">
+                    {{ form_widget(form.idproblema) }}
+                </div>
+                <div class="row" style="margin: 5px 0px; "> 
+                    {{ form_label(form.file) }}
+                    {{ form_widget(form.file) }}
+                </div>
 
-    <table class="records_list" border="1" cellspacing=1>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Titulo</th>
-                <th>Foto</th>
-                <th>Descripcion</th>
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
-                <td>{{ entity.titulo }}</td>
-                <td>{{ entity.foto }}</td>
-                <td>{{ entity.descripcion }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                
+                    {#{{ form_row(form.nombre) }}
+                    {{ form_row(form.titulo) }}
+                    {{ form_row(form.descripcion) }}
+                    {{ form_row(form.idcategoria) }}
+                    {{ form_row(form.idproblema) }}
+                    {{ form_row(form.file) }}#}
+                <!-- <ul class="record_actions">
+            <li>
+                <a href="{{ path('admin_subcategoria') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul> -->
 
-        <ul>
+                <div class="col-md-12">
+                    <div class="text-center">{{ form_widget(form.submit) }}</div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="tablapanel">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 " style="margin-bottom: 25px;">
+                    <table class="table-bordered"  style="margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                {#<th>Id</th>#}
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Titulo</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center" style="width: 50%;">Descripcion</th>
+                                <th class="text-center">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    {#<td><a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                                    <td class="text-center">{{ entity.nombre }}</td>
+                                    <td class="text-center">{{ entity.titulo }}</td>
+                                    <td class="text-center">{{ entity.foto }}</td>
+                                    <td class="text-justify">{{ entity.descripcion | raw}}</td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('admin_subcategoria_show', { 'id': entity.id }) }}">Ver</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">Editar</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    {#<ul>
         <li>
             <h3> 
                 <a href="{{ path('admin_subcategoria_new') }}">
@@ -46,16 +114,27 @@
                 </a>
             </h3>
         </li>
-        <li>
-            <h3> 
-                <a href="{{ path('admin_panel') }}">
-                    Regresar al panel administrativo
-                </a>
-            </h3>
-        </li>
-    </ul>     
+         <li>
+             <h3> 
+                 <a href="{{ path('admin_panel') }}">
+                     Regresar al panel administrativo
+                 </a>
+             </h3>
+         </li>
+    </ul>   #}  
 {% endblock %}
 
 {% block javascripts_step %}
     <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            validarUsuario();
+        });
+        {{ tinymce_init() }}
+    </script>
 {% endblock %}

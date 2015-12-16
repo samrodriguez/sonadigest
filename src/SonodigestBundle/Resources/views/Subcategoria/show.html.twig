@@ -1,44 +1,57 @@
-{% extends '::base.html.twig' %}
+{#{% extends '::base.html.twig' #}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Lista de Subcategorias{% endblock %}
 
-{% block body -%}
-    <h1>Subcategoria</h1>
+{% block bod -%}
+    {#<h1>Subcategoria</h1>#}
+    <div class="container">
+        <div class="row">
+            <table class="table-bordered" style="margin: 0 auto; width: 80%;">
+                <tbody>
+                    {#<tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>#}
+                    <tr>
+                        <th class="text-center">Nombre</th>
+                        <td class="text-center">{{ entity.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Titulo</th>
+                        <td class="text-center">{{ entity.titulo }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Foto</th>
+                        <td class="text-center">{{ entity.foto }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Descripcion</th>
+                        <td class="text-justify">{{ entity.descripcion | raw }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    <div class="clearfix"></div>                
 
-    <table class="record_properties" border="1" cellspacing="1">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ entity.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Foto</th>
-                <td>{{ entity.foto }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ entity.descripcion }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_subcategoria') }}">
-            Regresar a la lista 
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">
-            Editar
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    
+    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria') }}"><div class="botonpanel">Regresar a la lista</div></a></div>                 
+    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar</div></a></div>                 
+    <div class="col-md-44 text-center">{{ form(delete_form) }}</div>                 
+                    
+</div>
 {% endblock %}
+
+{#<ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_subcategoria') }}">
+                Regresar a la lista 
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}">
+                Editar
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>#}

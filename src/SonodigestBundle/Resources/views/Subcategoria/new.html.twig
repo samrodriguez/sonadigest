@@ -21,13 +21,11 @@
     </li>
 </ul> -->
 
-   <div class="form-grouphide col-sm-12">
+   <div>
         <a href="{{ path('admin_subcategoria') }}" class="btn btn-default btn-sm" id="cancelarNuevo">Cancelar</a>
         {{ form_widget(form.submit) }}
     </div>
-	        
-	  
-	
+	     	
 	{{ form_end(form) }}
 {% block javascripts_step %}
 <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>

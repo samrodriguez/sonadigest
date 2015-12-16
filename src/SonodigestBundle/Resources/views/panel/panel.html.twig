@@ -1,56 +1,104 @@
 {#{% extends '::base.html.twig' %}#}
+<html lang="es">
+    <head>
+        {%block head -%} 
+            {% block meta -%}
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            {% endblock%}
+            <!-- Las 3 meta tags de arriba siempre tienen que incluirse y todo lo demas tiene que venir despues -->
+            {% block title -%}<title>{% block titlename -%}Sonodigest - El Salvador{% endblock %}</title>{% endblock %}
 
- {%block head -%} 
-    {% block css -%}    
-        <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
-        <link rel="stylesheet" href="{{ asset('Resources/bootstrap-3/css/bootstrap.css') }}" />
-    {%- endblock %}
- {% endblock %}
+            <!-- Declaracion de Archivo de Bootstrap -->	
+            {% block css -%}    
+                <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
+                {# <link rel="stylesheet" href="{{ asset('Resources/bootstrap-3/css/bootstrap.css') }}" />#}
+                <link rel="stylesheet" href="{{ asset('Resources/css/bootstrap.css') }}" />
+                <link rel="stylesheet" href="{{ asset('Resources/css/style.css') }}" />
+                <link rel="stylesheet" href="{{ asset('Resources/css/panel.css') }}" />
+                {%- endblock %}
+                {%- endblock%}
+            </head>
 
- {% block body -%}
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 text-center" style="margin-top: 100px;">
-                <p><h1>Panel Administrativo</h1></p>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="clearfix"></div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 100px;">
-                    <a href="{{ path('admin_categoria') }}">
-                        Gestion Categoria
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 100px;">
-                    <a href="{{ path('admin_subcategoria') }}">
-                        Gestion Subcategoria
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 100px;">
-                    <a href="{{ path('admin_problema') }}">
-                        Gestion Problema
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-{% endblock %}
+            <body>
+                {% block body -%}  
+                    <div class="container">
+                        <div class="row">
+                            <!-- Imagen Panel -->
+                            {% block imagen %}
+                                {% include 'SonodigestBundle:Layout:imagenpanel.html.twig'%}
+                            {% endblock %}
 
-{% block javascripts_step %}
-        <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
-        <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
-       <script>
-            $(document).ready(function(){
-                validarUsuario();
-            });
-        </script>
-{% endblock %}
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center" style="margin-top: 5px;">
+                                <p><h1>Panel Administrativo</h1></p>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="clearfix"></div>
+
+                            <!-- Botones Panel -->
+                            {% block botones %}
+                                {% include 'SonodigestBundle:Layout:botonespanel.html.twig'%}
+                            {% endblock %}
+
+                            <div class="clearfix"></div>
+
+                            <div class="col-md-12 text-center hr">
+
+                            </div>
+                            <a href="{{ path('admin_categoria') }}">
+                                <div class="clearfix"></div>
+                                <div class="col-md-3 text-center">
+                                    <div class="color1" style="margin-top: 10px;">
+
+                                        <h4>Gestion Categoria</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_subcategoria') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color2" style="margin-top: 10px;">
+
+                                        <h4>Gestion Subcategoria</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_problema') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color1" style="margin-top: 10px;">
+
+                                        <h4>Gestion Problema</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_categoriablog') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color2" style="margin-top: 10px;">
+
+                                        <h4>Gestion Subcategoria de Blog</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block javascripts_step %}
+                    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+                    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+                    <script>
+                        $(document).ready(function () {
+                            validarUsuario();
+                        });
+                    </script>
+                {% endblock %}
+            </body>
+        </html>

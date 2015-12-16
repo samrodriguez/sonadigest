@@ -29,10 +29,15 @@ class SubcategoriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SonodigestBundle:Subcategoria')->findAll();
-
+        $entities = $em->getRepository('SonodigestBundle:Subcategoria')->findBy(array(),array('id' => 'DESC'));
+        
+        $entity = new Subcategoria();
+        $form   = $this->createCreateForm($entity);
+        
         return array(
             'entities' => $entities,
+            'entity' => $entity,
+            'form'   => $form->createView(),
         );
     }
     /**
@@ -69,7 +74,8 @@ class SubcategoriaController extends Controller
                     $em->flush();
                 }
 
-            return $this->redirect($this->generateUrl('admin_subcategoria_show', array('id' => $entity->getId())));
+            //return $this->redirect($this->generateUrl('admin_subcategoria_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_subcategoria'));
         }
 
         return array(
@@ -92,7 +98,9 @@ class SubcategoriaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear',
+            'attr'=>array('class'=>'botonpanel'))
+        );
 
         return $form;
     }
@@ -181,7 +189,10 @@ class SubcategoriaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update',
+            'attr'=>array('class'=>'botonpanel'))
+                
+            );
 
         return $form;
     }
@@ -224,7 +235,7 @@ class SubcategoriaController extends Controller
         }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_subcategoria_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_subcategoria', array('id' => $id)));
         }
 
         return array(
@@ -271,7 +282,9 @@ class SubcategoriaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_subcategoria_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit',  array('label' => 'Borrar',
+            'attr'=>array('class'=>'botonpanel'))
+            )
             ->getForm()
         ;
     }

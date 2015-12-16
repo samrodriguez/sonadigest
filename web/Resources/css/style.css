@@ -1,0 +1,172 @@
+.hero {
+  position: relative;
+  background: url(http://www.vitafarmaecuador.com/images/cat-headers/doctora3.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  padding-top: 110px;
+  min-height: 350px;
+  letter-spacing: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+.hero h1 {
+  font-size: 50px;
+  line-height: 1.3;
+}
+.hero h1 span {
+  font-size: 25px;
+  color: #f6eb14;
+  border-bottom: 2px solid #f6eb14;
+  padding-bottom: 12px;
+  line-height: 3;
+}
+
+.herov {
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  padding-top: 110px;
+  min-height: 500px;
+  letter-spacing: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+.herov h1 {
+  font-size: 50px;
+  line-height: 1.3;
+}
+.herov h1 span {
+  font-size: 25px;
+  color: #f6eb14;
+  border-bottom: 2px solid #f6eb14;
+  padding-bottom: 12px;
+  line-height: 3;
+}
+
+.animate {
+        -webkit-animation: spinit 0.2s 5;
+        -moz-animation: spinit 0.2s 5;
+        animation: spinit 0.2s 5;
+      }
+      @-webkit-keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+      @-moz-keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+      @keyframes spinit {
+        0% {
+          top: 0em;
+        }
+        50% {
+          top: -5em;
+        }
+        100% {
+          top: -9em;
+        }
+      }
+
+      /* Setting the required value to top will make the spinner end at that number */
+
+      #digit1 {
+        top: -14em;
+        /* -4em means 5 will be the number */
+      }
+      #digit2 {
+        top: -2em;
+      }
+      #digit3 {
+        top: 0em;
+      }
+
+
+  span {
+    position: relative;
+  }
+
+  .navbut {
+    display: inline; padding: 20px; font-family: 'Montserrat', sans-serif; font-weight: 400px; font-size: 13px;
+  }
+
+ul > li.active > a {
+  color: #D46D13;
+}
+
+.clicknav ul.sub-nav {
+    display: none;
+}
+
+.clicknav ul.visible {
+    display: block;
+}
+
+.blogtitulo {
+  color: #828282; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  font-size: 24px;
+}
+.blogboton {
+  height: 30px; 
+  width: 200px; 
+  margin-right: 15px; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  color: #FFF; 
+  margin-bottom: 15px; 
+  background-color: #76B9C4; 
+  text-align: center;
+  border-radius: 0px;
+  outline: 0;
+}
+.blogboton:hover,
+.blogboton:focus,
+.blogboton.focus
+.blogboton.active {
+  color: #FFF;
+  background-color: #39CCCC;
+  border-radius: 0px;
+  outline: 0;
+}
+
+.blogbotonnav {
+  width: 100%; 
+  font-family: 'Montserrat', sans-serif; font-weight: 400; 
+  color: #FFF; 
+  margin-bottom: 10px;
+  background-color: #76B9C4; 
+  text-align: center; 
+  outline: 0;
+}
+.blogbotonnav:hover,
+.blogbotonnav:focus,
+.blogbotonnav.focus
+.blogbotonnav.active {
+  color: #FFF;
+  background-color: #39CCCC;
+  outline: 0;
+}
+button {
+   outline: 0;
+}
+a {
+   outline: 0;
+}

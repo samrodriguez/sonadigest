@@ -40,7 +40,10 @@ class SubcategoriaType extends AbstractType
                 'required' => true,
                 'empty_value' => 'Seleccione un problema',
                 'multiple' => true ,
-                'expanded' => true
+                'expanded' => true ,
+                'attr' => array(
+                        'class' => 'aaa bbb',        
+                    )
                 ))
             ->add('file',null, array('label'=>'Foto de Subcategoria','required'=>false,
                     'attr'=>array('class'=>'Subcategoria'
