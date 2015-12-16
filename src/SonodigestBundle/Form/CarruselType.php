@@ -3,6 +3,7 @@
 namespace SonodigestBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -15,8 +16,8 @@ class CarruselType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           // ->add('imagen')
-          
+            ->add('imagen')
+            ->add('tipoCarrusel')
             ->add('file',null, array('label'=>'Imagen','required'=>false,
                     'attr'=>array('class'=>'imagen'
                         

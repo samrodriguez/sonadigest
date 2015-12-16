@@ -3,14 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/footer.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Entrada/edit.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Inicio/inicio.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/NosotrosController.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Nosotros/nosotros.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/estadistica.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/digit.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/navigation.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Layout/beneficios.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/CarruselType.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Entity/TipoCarrusel.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/index.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Controller/TipoCarruselController.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Prototype/foto.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/TipoCarruselType.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Inicio/inicio.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/new.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Entity/Carrusel.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/show.html.twig</file>
         </group>
     </open-files>
 </project-private>

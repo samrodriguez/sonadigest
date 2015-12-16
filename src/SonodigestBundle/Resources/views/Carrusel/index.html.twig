@@ -6,7 +6,8 @@
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Id</th>              
+                <th>Carrusel</th>
                 <th>Imagen</th>
                 <th>Actions</th>
             </tr>
@@ -15,7 +16,8 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('admin_carrusel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.imagen }}</td>
+                 <td>{{ entity.tipoCarrusel }}</td>
+                <td><img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/carrusel/')}}{{entity.imagen}}" alt="dummy image"> </td>
                 <td>
                 <ul>
                     <li>

@@ -104,7 +104,7 @@ class Carrusel
      /**
      * Set tipoCarrusel
      *
-     * @param \DGPlusbelleBundle\Entity\TipoCarrusel $tipoCarrusel
+     * @param \SonodigestBundle\Entity\TipoCarrusel $tipoCarrusel
      *
      * @return Carrusel
      */
@@ -118,7 +118,7 @@ class Carrusel
     /**
      * Get tipoCarrusel
      *
-     * @return \DGPlusbelleBundle\Entity\TipoCarrusel
+     * @return \SonodigestBundle\Entity\TipoCarrusel
      */
     public function getTipoCarrusel()
     {

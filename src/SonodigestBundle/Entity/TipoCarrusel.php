@@ -125,7 +125,7 @@ class TipoCarrusel
     
      
      /**
-     * @ORM\OneToMany(targetEntity="Carrusel", mappedBy="TipoCarrusel", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Carrusel", mappedBy="tipoCarrusel", cascade={"persist", "remove"})
      */
     protected $placas;
     public function __construct()
@@ -143,5 +143,9 @@ class TipoCarrusel
         foreach ($placas as $placa) {
             $placa->setTipoCarrusel($this);
         }
+    }
+    
+     public function __toString() {
+    return $this->detalle ? $this->detalle : '';
     }
 }
