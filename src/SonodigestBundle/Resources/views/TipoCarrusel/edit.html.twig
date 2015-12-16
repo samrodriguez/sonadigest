@@ -1,6 +1,36 @@
 {% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
 
-
+{% block css %}
+    {{parent()}}
+    <style>
+        
+        //Posicion del boton agregar
+        .placas>div:last-child {
+            position:absolute;
+        }
+      
+        .addItem{
+            position: absolute;
+            height: 50px;
+            float: right;
+            margin-bottom: 50px;
+            padding-bottom: 100px;
+            top: 450px;
+            left: 785px;
+        }
+        
+            .addItem div {
+                position: absolute;
+            }
+        
+        .col-md-4{
+            padding-top: 40px;
+        }
+  
+          
+    </style>
+    
+    {% endblock %}
 
 {% block bod -%}
     
@@ -14,7 +44,7 @@
           <div class="row container-fluid">  
              <div class="row col-md-6 " style="margin-bottom:50px">
 
-                 <div {{ form_row(edit_form.detalle) }}</div>
+             {#    <div {{ form_row(edit_form.detalle) }}</div> #}
                          
               </div> 
               
@@ -110,7 +140,7 @@ jQuery(document).ready(function() {
     //Identificar que form esta activo
     var editar=$('div.placas').attr('id');
    // if(editar!='editar_usuario'){
-        addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
+        //addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
    // }
     
 

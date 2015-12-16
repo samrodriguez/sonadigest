@@ -15,10 +15,10 @@ class TipoCarruselType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('detalle',null,array('label' => 'Descripción','required'=>false,
+       /*     ->add('detalle',null,array('label' => 'Descripción','required'=>false,
                     'attr'=>array(
                     'class'=>'form-control input-sm detalleCarrusel'
-                    )))
+                    )))*/
            // ->add('estado')
                 
            /* ->add('file',null, array('label'=>'Imagen','required'=>false,

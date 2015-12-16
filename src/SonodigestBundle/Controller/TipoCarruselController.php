@@ -48,6 +48,7 @@ class TipoCarruselController extends Controller
     {
         $entity = new TipoCarrusel();
         $entity->setEstado(true);
+        $entity->setDetalle("Principal");
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -207,7 +208,7 @@ class TipoCarruselController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SonodigestBundle:TipoCarrusel')->find($id);
-
+     
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TipoCarrusel entity.');
         }
@@ -218,6 +219,25 @@ class TipoCarruselController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+      
+ 
+          foreach($entity->getPlacas() as $row){
+            
+                if($row->getFile()!=null){
+                    $path = $this->container->getParameter('photo.carrusel');
+
+                    $fecha = date('Y-m-d His');
+                    $extension = $row->getFile()->getClientOriginalExtension();
+                    $nombreArchivo = $row->getId()."-"."Imagen"."-".$fecha.".".$extension;
+
+                    $row->setImagen($nombreArchivo);
+                    $row->getFile()->move($path,$nombreArchivo);
+
+                    $em->persist($row);
+                    $em->flush();
+
+                }  
+           }     
 
             return $this->redirect($this->generateUrl('admin_tipocarrusel_edit', array('id' => $id)));
         }

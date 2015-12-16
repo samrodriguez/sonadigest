@@ -1,43 +1,43 @@
 {% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
 
 {% block bod -%}
-    <h1>TipoCarrusel list</h1>
-
+    <h1>Carrusel Principal</h1>
+ 
     <table class="records_list">
-        <thead>
+    {#    <thead>
             <tr>
                 <th>Id</th>
                 <th>Detalle</th>
                 <th>Estado</th> 
                 <th>Actions</th>
             </tr>
-        </thead>
+        </thead>  #}
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_tipocarrusel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            {#    <td><a href="{{ path('admin_tipocarrusel_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.detalle }}</td>
                <td>{{ entity.estado }}</td> 
                 <td>
                 <ul>
-                    <li>
+                  <li>
                         <a href="{{ path('admin_tipocarrusel_show', { 'id': entity.id }) }}">show</a>
+                    </li> #}
+                    <li> 
+                        <a href="{{ path('admin_tipocarrusel_edit', { 'id': entity.id }) }}">Modificar Imagenes</a>
                     </li>
-                    <li>
-                        <a href="{{ path('admin_tipocarrusel_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                </ul>  
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> 
 
-        <ul>
+  {#      <ul>
         <li>
             <a href="{{ path('admin_tipocarrusel_new') }}">
                 Create a new entry
             </a>
         </li>
-    </ul>
+    </ul> #}
     {% endblock %}

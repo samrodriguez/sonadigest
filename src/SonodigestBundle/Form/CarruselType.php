@@ -16,8 +16,11 @@ class CarruselType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imagen')
-            ->add('tipoCarrusel')
+           ->add('imagen',null, array('label'=>'Imagen Actual','required'=>false,
+                    'attr'=>array('class'=>'imagenActual'
+                        
+                    )))    
+            //->add('tipoCarrusel')
             ->add('file',null, array('label'=>'Imagen','required'=>false,
                     'attr'=>array('class'=>'imagen'
                         
