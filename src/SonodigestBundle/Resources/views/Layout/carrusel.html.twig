@@ -9,15 +9,27 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
+           {% for key, foto in fotoscarrusel %}
+            {% if loop.first %}   
+                <div class="item active">               
+                  <img src="{{ asset('Photos/carrusel/')}}{{foto.imagen}}" alt="..." style="max-width: 100%; width: 100%;"> 
+                   {# <img src="http://placehold.it/1980x700" alt="..." style="max-width: 100%; width: 100%;"> #}
+                </div>
+                {% else %}
+                    <div class="item">               
+                  <img src="{{ asset('Photos/carrusel/')}}{{foto.imagen}}" alt="..." style="max-width: 100%; width: 100%;"> 
+                   {# <img src="http://placehold.it/1980x700" alt="..." style="max-width: 100%; width: 100%;"> #}
+                </div>
+                {% endif %}
+                
+            {% endfor %}   
+            
+        {#    <div class="item">
                 <img src="http://placehold.it/1980x700" alt="..." style="max-width: 100%; width: 100%;">
             </div>
             <div class="item">
                 <img src="http://placehold.it/1980x700" alt="..." style="max-width: 100%; width: 100%;">
-            </div>
-            <div class="item">
-                <img src="http://placehold.it/1980x700" alt="..." style="max-width: 100%; width: 100%;">
-            </div>
+            </div>  #}
         </div>
 
         <!-- Controls -->
