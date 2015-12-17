@@ -20,10 +20,16 @@ class InicioController extends Controller{
      *
      * @Route("/", name="admin_inicio")
      * @Method("GET")
-     * @Template()
+     * @Template("SonodigestBundle:Inicio:inicio.html.twig")
      */
     public function indexAction()
     {
-         return $this->render('SonodigestBundle:Inicio:inicio.html.twig');     
+        // return $this->render('SonodigestBundle:Inicio:inicio.html.twig');  
+        
+         $em = $this->getDoctrine()->getManager();
+         $idcarrusel =  $em->getRepository('SonodigestBundle:Carrusel')->findAll();
+         
+         return array('fotoscarrusel'=>$idcarrusel);
+         
     }
 }
