@@ -39,7 +39,7 @@ class Carrusel
     /**
      * @var \tipoCarrusel
      *
-     * @ORM\ManyToOne(targetEntity="TipoCarrusel", inversedBy="placas", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="TipoCarrusel", inversedBy="placas")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="tipo_carrusel", referencedColumnName="id")
      * })

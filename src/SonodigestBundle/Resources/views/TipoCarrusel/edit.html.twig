@@ -26,8 +26,17 @@
         .col-md-4{
             padding-top: 40px;
         }
+       
+        .btn>div:last-child {
+            position:absolute;
+        }
+               
+        
+       .link{left: -48px;
+             top: 3px;
+         position: relative;
+       }
   
-          
     </style>
     
     {% endblock %}
@@ -52,12 +61,12 @@
               
               <div  style="margin-bottom:20px" class="placas" data-prototype="{% filter escape %}  {% include 'SonodigestBundle:Prototype:foto.html.twig' with { 'form': edit_form.placas.vars.prototype} %}   {% endfilter  %}"> 
 
-                      {% for placa in edit_form.placas %}
+                      {% for key, placa in edit_form.placas %}
                                         
                        <div class="col-md-4">
                          <div class="panel bg-grd-light" data-fill-color="true">
                             <div class="panel-body">
-
+                                 <img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/carrusel/')}}{{placas[key].imagen}}" alt="dummy image"> 
                                   {{ form_row(placa) }}   
  
                             </div>
@@ -110,6 +119,8 @@ var $delLinkLi = $('#hnr_sircimbundle_estudioradiologicotype_placas.required').a
 
 
 jQuery(document).ready(function() {
+    
+     $('div[id*="sonodigestbundle_tipocarrusel_placas_"]').siblings().remove();   // Oculta el id de la colección
 
     //$("#dgplusbellebundle_consulta_pacienteSelectBoxItOptions li").remove();
 
@@ -123,7 +134,7 @@ jQuery(document).ready(function() {
 
    //$('input[id$=dgplusbellebundle_plantilla_placas_]').selectBoxIt;
 
-    collectionHolder.find('li').each(function() {
+    collectionHolder.find('.panel-body').each(function() {
         addTagFormDeleteLink($(this));
 
     });
@@ -193,7 +204,7 @@ function addTagForm(collectionHolder, $newLinkLi) {
 }
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormA = $('<div class="row"><div class="col-md-1"><a class="link btn btn-danger" style="margin-left:35px" href="#">Eliminar</a></div></div>');
+    var $removeFormA = $('<div class="col-md-1"><a class="link btn btn-danger" style="margin-left:35px" href="#">Eliminar</a></div>');
     $tagFormLi.append($removeFormA);
 
     $removeFormA.on('click', function(e) {

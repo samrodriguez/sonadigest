@@ -8,8 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use SonodigestBundle\Entity\TipoCarrusel;
-use DGPlusbelleBundle\Entity\Carrusel;
+use SonadigestBundle\Entity\Carrusel;
 use SonodigestBundle\Form\TipoCarruselType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -173,6 +174,7 @@ class TipoCarruselController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'placas'=>$entity->getPlacas(),
         );
     }
 
@@ -212,32 +214,77 @@ class TipoCarruselController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TipoCarrusel entity.');
         }
+        
+        $originalImagenes= new ArrayCollection();
+        $path  = $this->getRequest()->server->get('DOCUMENT_ROOT').'/sonodigest/web/Photos/carrusel/';
+        $path2 = $this->container->getParameter('photo.carrusel');    
+        // Create an ArrayCollection of the current Tag objects in the database
+        $i=0;
+        
+        $originalImagenes = $entity->getPlacas();
+       
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            
+             foreach ($entity->getPlacas() as $row) {
+            
+                        
+            
+               // $galeriaImagenes = new Carrusel();
+                if($row->getFile()!=null){
+                    $file_path = $path.'/'.$row->getImagen();
+                    //echo '*'.$row->getNombre().'*';
+                    if(file_exists($file_path) && $row->getImagen()!="") unlink($file_path);
+                    //var_dump($row->getFile());
+                    //die();
+                    //echo "vc";
+                    $fecha = date('Y-m-d His');
+                    $extension = $row->getFile()->getClientOriginalExtension();
+                    $nombreArchivo = "consulta - ".$i." - ".$fecha.".".$extension;
+
+                    //echo $nombreArchivo;
+                    //$seguimiento->setFotoAntes($nombreArchivo);
+
+
+                    $row->setImagen($nombreArchivo);
+                    //$imagenConsulta->setConsulta($entity);
+                    //array_push($placas, $imagenConsulta);
+                    $row->getFile()->move($path2,$nombreArchivo);
+                    //$em->merge($seguimiento);
+                    $em->persist($row);
+                    //$em->flush();
+                    $i++;
+
+                }
+            
+        }
+            
+        
+        
+            foreach ($originalImagenes as $row) {
+                if (false === $entity->getPlacas()->contains($row)) {
+                    // remove the Task from the Tag
+                    //$row->getIdcategoria()->removeImagen($row);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    //$row->setIdcategoria(null);
+
+                    //$em->persist($row);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+                     $em->remove($row);
+                     $em->flush();
+                }
+            }
+        
             $em->flush();
       
  
-          foreach($entity->getPlacas() as $row){
-            
-                if($row->getFile()!=null){
-                    $path = $this->container->getParameter('photo.carrusel');
-
-                    $fecha = date('Y-m-d His');
-                    $extension = $row->getFile()->getClientOriginalExtension();
-                    $nombreArchivo = $row->getId()."-"."Imagen"."-".$fecha.".".$extension;
-
-                    $row->setImagen($nombreArchivo);
-                    $row->getFile()->move($path,$nombreArchivo);
-
-                    $em->persist($row);
-                    $em->flush();
-
-                }  
-           }     
+          
 
             return $this->redirect($this->generateUrl('admin_tipocarrusel_edit', array('id' => $id)));
         }

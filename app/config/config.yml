@@ -12,6 +12,7 @@ parameters:
     photo.imagenblog: %kernel.root_dir%/../web/Photos/imagenblog/
     photo.imagenindex: %kernel.root_dir%/../web/Photos/imagenindex/
     photo.galeriafotos: %kernel.root_dir%/../web/Photos/galeriafotos/
+    photo.carrusel: %kernel.root_dir%/../web/Photos/carrusel/
 
 framework:
     #esi:             ~
