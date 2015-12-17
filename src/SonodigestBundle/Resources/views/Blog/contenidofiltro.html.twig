@@ -37,37 +37,29 @@
             {#{{ entrada.contenido|length > 150 ? entrada.contenido|slice(0, 150) ~ '...' : entrada.contenido  }}#}
             {{ entrada.contenido}}
         </div>
-        <div class="pull-right"><button class="btn text-uppercase blogboton">Ver más</button></div>
+        <div class="pull-right"><button class="btn text-uppercase blogboton">Leer más</button></div>
         <div style="margin-top: 60px;"></div>
         <hr>
         <!-- Fin Blog Item -->
     {% endfor %}
 
     
-    
 </div>
     
-   {% block javascripts_step2 %}
-                    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
-                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
-                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+  {% block javascripts_step3 %}
                     
-                    <script src="{{asset('http://snapwidget.com/js/snapwidget.js')}}"></script>
-                    <!-- jQuery (Necesario para que los Plugins de Bootstrap) -->
-                    <script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
-                    <!-- Aqui estan todos los Plugins que contiene el Framework de Boostrap -->
-                    <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
-                    <script type="text/javascript" src="{{ asset('Resources/js/shorten/shorten.js')}}"></script>
+                    
                     
                     <script>
-                            $(document).ready(function () {
-                                $(".contenidoEntrada").shorten({
-                                    "showChars" : 150,
-                                    "moreText"  : "",
-                                    "lessText"  : "",
-                                });
+                            
+                            $(".contenidoEntrada").shorten({
+                                "showChars" : 150,
+                                "moreText"  : "",
+                                "lessText"  : "",
                             });
                             
+                            
+                           
                         
                     </script>
                 {% endblock %}

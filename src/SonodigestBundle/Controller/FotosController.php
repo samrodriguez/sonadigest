@@ -20,10 +20,10 @@ class FotosController extends Controller{
      *
      * @Route("/", name="admin_fotos")
      * @Method("GET")
-     * @Template()
+     * @Template("SonodigestBundle:Galeria:galeriafotos.html.twig")
      */
     public function indexAction()
     {
-         return $this->render('SonodigestBundle:Fotos:fotos.html.twig');     
+        return array();     
     }
 }

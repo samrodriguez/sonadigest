@@ -27,7 +27,7 @@ class BlogController extends Controller{
         $em = $this->getDoctrine()->getManager();
         
         $categoriasBlog = $em->getRepository('SonodigestBundle:Categoriablog')->findAll();
-        $entradas = $em->getRepository('SonodigestBundle:Entrada')->findBy(array(),array('id'=>'DESC'));
+        $entradas = $em->getRepository('SonodigestBundle:Entrada')->findBy(array(),array('fecha'=>'DESC'));
         //return $this->render('SonodigestBundle:Ciruyproc:ciruyproc.html.twig');     
         //var_dump($categorias[0]->getSubcategoria()[0]->getNombre());
         //var_dump($subcategorias->getSubcategoria());
@@ -53,13 +53,13 @@ class BlogController extends Controller{
      *
      * @Route("/entradas/blog/{id}", name="admin_blog_entradas")
      * @Method("GET")
-     * @Template("SonodigestBundle:Blog:contenido.html.twig")
+     * @Template("SonodigestBundle:Blog:contenidofiltro.html.twig")
      */
     public function entradasblogAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entradas = $em->getRepository('SonodigestBundle:Entrada')->findBy(array('idcategoria'=>$id),array('id'=>'DESC'));
+        $entradas = $em->getRepository('SonodigestBundle:Entrada')->findBy(array('idcategoria'=>$id),array('fecha'=>'DESC'));
         //return $this->render('SonodigestBundle:Ciruyproc:ciruyproc.html.twig');     
         //var_dump($categorias[0]->getSubcategoria()[0]->getNombre());
         //var_dump($subcategorias->getSubcategoria());
