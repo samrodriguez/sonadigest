@@ -20,7 +20,7 @@
 }
 
 .hr{
-  margin: 20px;
+  margin: 20px 0px ; 
   border: 2px inset #eee; 
   height: 1px; width: 100%;
 }

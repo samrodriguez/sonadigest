@@ -1,44 +1,59 @@
-{% extends '::base.html.twig' %}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Ver Entrada{% endblock %}
 
-{% block body -%}
-    <h1>Entrada</h1>
+{% block bod -%}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ entity.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Escritapor</th>
-                <td>{{ entity.escritapor }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ entity.fecha|date('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <th>Contenido</th>
-                <td>{{ entity.contenido }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_entrada') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_entrada_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <div>
+                <table class="table-bordered" style="margin: 0 auto; width: 80%;">
+                    <tbody>
+                        {#<tr>
+                            <th class="text-center" style="width: 15%">Id</th>
+                            <td><div style="padding: 0px 10px;">{{ entity.id }}</div></td>
+                        </tr>#}
+                        <tr>
+                            <th class="text-center" style="width: 15%;">Titulo</th>
+                            <td><div style="padding: 0px 10px;">{{ entity.titulo }}</div></td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Escritapor</th>
+                            <td><div style="padding: 0px 10px;">{{ entity.escritapor }}</div></td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Fecha</th>
+                            <td><div style="padding: 0px 10px;">{{ entity.fecha|date('d-m-Y') }}</div></td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Contenido</th>
+                            <td><div class="text-justify" style="padding: 0px 10px;">{{ entity.contenido | raw}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+                        <div class="container">
+    <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada') }}"><div class="botonpanel">Regresar a la lista</div></a></div>                 
+    <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar</div></a></div>                 
+    <div class="col-md-4 text-center">{{ form(delete_form) }}</div> 
+    </div>
+
 {% endblock %}
+
+
+{#<ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_entrada') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_entrada_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>#}

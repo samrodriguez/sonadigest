@@ -24,7 +24,13 @@ class EntradaType extends AbstractType
                 'required' => true
             ))
             //->add('fecha')
-            ->add('contenido', 'textarea')
+            ->add('contenido', 'textarea',array(
+                  'required' => true,
+                  'attr' => array(
+                        'class' => 'tinymce',
+                        'data-theme' => 'bbcode' // Skip it if you want to use default theme
+                    ))
+            )
             ->add('idimagen', new ImagenblogType(), array(
                 'label' => ' '
             ))

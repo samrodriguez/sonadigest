@@ -26,6 +26,7 @@
                 {% block body -%}  
                     <div class="container">
                         <div class="row">
+                            
                             <!-- Imagen Panel -->
                             {% block imagen %}
                                 {% include 'SonodigestBundle:Layout:imagenpanel.html.twig'%}
@@ -45,46 +46,86 @@
 
                             <div class="clearfix"></div>
 
-                            <div class="col-md-12 text-center hr">
-
-                            </div>
+                            <div class="col-md-12 text-center hr"></div>
+                            <div class="clearfix"></div>
+                            
                             <a href="{{ path('admin_categoria') }}">
                                 <div class="clearfix"></div>
                                 <div class="col-md-3 text-center">
-                                    <div class="color1" style="margin-top: 10px;">
+                                    <div class="color1" style="margin-top: 10px; height: 20%;">
 
-                                        <h4>Gestion Categoria</h4>
+                                        <h4>Gestión Categoria</h4>
 
                                     </div>
                                 </div>
                             </a>
                             <a href="{{ path('admin_subcategoria') }}">
                                 <div class="col-md-3 text-center">
-                                    <div class="color2" style="margin-top: 10px;">
+                                    <div class="color2" style="margin-top: 10px; height: 20%;">
 
-                                        <h4>Gestion Subcategoria</h4>
+                                        <h4>Gestión Subcategoria</h4>
 
                                     </div>
                                 </div>
                             </a>
                             <a href="{{ path('admin_problema') }}">
                                 <div class="col-md-3 text-center">
-                                    <div class="color1" style="margin-top: 10px;">
+                                    <div class="color1" style="margin-top: 10px; height: 20%;">
 
-                                        <h4>Gestion Problema</h4>
+                                        <h4>Gestión Problema</h4>
 
                                     </div>
                                 </div>
                             </a>
                             <a href="{{ path('admin_categoriablog') }}">
                                 <div class="col-md-3 text-center">
-                                    <div class="color2" style="margin-top: 10px;">
+                                    <div class="color2" style="margin-top: 10px; height: 20%;">
 
-                                        <h4>Gestion Subcategoria de Blog</h4>
+                                        <h4>Gestión Subcategoria de Blog</h4>
 
                                     </div>
                                 </div>
                             </a>
+                                
+                            {#Segunda fila de opciones del panel#}
+                            <div class="clearfix"></div>
+                            <a href="{{ path('admin_entrada') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color1" style="margin-top: 10px; height: 20%;">
+
+                                        <h4>Gestión Entradas de Blog</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_subcategoria') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color2" style="margin-top: 10px; height: 20%;">
+
+                                        <h4>Gestión Galeria de Imagenes</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ path('admin_problema') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color1" style="margin-top: 10px; height: 20%;">
+
+                                        <h4>Gestión Carrusel</h4>
+
+                                    </div>
+                                </div>
+                            </a>
+                            {#<a href="{{ path('admin_categoriablog') }}">
+                                <div class="col-md-3 text-center">
+                                    <div class="color2" style="margin-top: 10px; height: 20%;">
+
+                                        <h4>Gestión Subcategoria de Blog</h4>
+
+                                    </div>
+                                </div>
+                            </a>#}
+                                
                         </div>
                     </div>
                 {% endblock %}
