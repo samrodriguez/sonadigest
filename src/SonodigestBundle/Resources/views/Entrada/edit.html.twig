@@ -1,16 +1,82 @@
-{% extends '::base.html.twig' %}
+{#{% extends '::base.html.twig' %}#}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Editar Entrada{% endblock %}
 
-{% block body -%}
-    <h1>Entrada edit</h1>
+{% block bod -%}
+    {#<h1>Entrada edit</h1>#}
 
-    {{ form(edit_form) }}
+    {{ form_start(edit_form) }}
+    {{ form_errors(edit_form)}}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_entrada') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(edit_form.titulo) }}</div>
+                    {{ form_widget(edit_form.titulo) }}
+                </div> 
+
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(edit_form.escritapor) }}</div>
+                    {{ form_widget(edit_form.escritapor) }}
+                </div>
+
+                <div class="row" style="margin: 10px 0px; ">
+                    {{ form_label(edit_form.contenido) }}
+                    {{ form_widget(edit_form.contenido) }}
+                </div>
+
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(edit_form.idcategoria) }}</div>
+                    {{ form_widget(edit_form.idcategoria) }}
+                </div>
+
+                <div class="row" style="margin: 10px 0px; ">
+                    {{ form_label(edit_form.idimagen) }}
+                    {{ form_widget(edit_form.idimagen) }}
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="clearfix"></div>
+
+            <div class="col-md-3"></div>
+            <div class="col-md-3 text-center">
+                {{ form_widget(edit_form._token)}}
+                {{ form(edit_form)}}
+            </div>
+            <div class="col-md-3 pull-left">
+                {{ form(delete_form) }}
+                {{ form_end(edit_form) }}
+            </div> 
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+
+    {% block javascripts_step %}
+        <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+        <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                validarUsuario();
+            });
+            {{ tinymce_init() }}
+        </script>
+    {% endblock %}
 {% endblock %}
+
+
+{# {{ form(edit_form) }}
+
+ <ul class="record_actions">
+     <li>
+         <a href="{{ path('admin_entrada') }}">
+             Back to the list
+         </a>
+     </li>
+     <li>{{ form(delete_form) }}</li>
+ </ul>#}

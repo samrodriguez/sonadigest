@@ -1,7 +1,79 @@
-{% extends '::base.html.twig' %}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Crear Entrada{% endblock %}
 
-{% block body -%}
-    <h1>Entrada creation</h1>
+{% block bod -%}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(form.titulo) }}</div>
+                    {{ form_widget(form.titulo) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(form.escritapor) }}</div>
+                    {{ form_widget(form.escritapor) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; ">
+                    {{ form_label(form.contenido) }}
+                    {{ form_widget(form.contenido) }}
+                </div>
+
+
+                <div class="row" style="margin: 10px 0px; ">
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(form.idcategoria) }}</div>
+                    {{ form_widget(form.idcategoria) }}
+                </div>
+                <div class="row" style="margin: 10px 0px; "> 
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <div class="col-md-2" style="padding-left: 0px;">{{ form_label(form.idimagen.file) }}</div>
+                        <div class="col-md-10" style="padding-left: 0px;">{{ form_widget(form.idimagen.file) }}</div>
+                    </div>
+                    
+                    
+                </div>
+
+
+                {#{{ form_row(form.nombre) }}
+                {{ form_row(form.titulo) }}
+                {{ form_row(form.descripcion) }}
+                {{ form_row(form.idcategoria) }}
+                {{ form_row(form.idproblema) }}
+                {{ form_row(form.file) }}#}
+                <!-- <ul class="record_actions">
+            <li>
+                <a href="{{ path('admin_subcategoria') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul> -->
+
+                <div class="col-md-12">
+                    <div class="text-center">{{ form_widget(form.submit) }}</div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            validarUsuario();
+        });
+        {{ tinymce_init() }}
+    </script>
+
+{% endblock %}
+{#<h1>Entrada creation</h1>
 
     {{ form(form) }}
 
@@ -11,5 +83,4 @@
             Back to the list
         </a>
     </li>
-</ul>
-{% endblock %}
+</ul>#}
