@@ -3,11 +3,10 @@
 namespace SonodigestBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CarruselType extends AbstractType
+class GaleriaImagenesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,15 +15,11 @@ class CarruselType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          /* ->add('imagen',null, array('label'=>'Imagen Actual','required'=>false,
-                    'attr'=>array('class'=>'imagenActual'
+            //->add('nombre')
+            ->add('file',null, array('label'=>'Foto','required'=>false,
+                    'attr'=>array('class'=>'foto'  
                         
-                    )))    */
-            //->add('tipoCarrusel')
-            ->add('file',null, array('label'=>'Imagen','required'=>false,
-                    'attr'=>array('class'=>'imagen'
-                        
-                    )))    
+                    )))  
         ;
     }
     
@@ -34,7 +29,7 @@ class CarruselType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SonodigestBundle\Entity\Carrusel'
+            'data_class' => 'SonodigestBundle\Entity\GaleriaImagenes'
         ));
     }
 
@@ -43,6 +38,6 @@ class CarruselType extends AbstractType
      */
     public function getName()
     {
-        return 'sonodigestbundle_carrusel';
+        return 'sonodigestbundle_galeriaimagenes';
     }
 }

@@ -1,0 +1,217 @@
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+
+
+        {%block head -%} 
+            {% block meta -%}
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            {% endblock%}
+            <!-- Las 3 meta tags de arriba siempre tienen que incluirse y todo lo demas tiene que venir despues -->
+            {% block title -%}<title>{% block titlename -%}Sonodigest - El Salvador{% endblock %}</title>{% endblock %}
+
+            <!-- Declaracion de Archivo de Bootstrap -->	
+            {% block css -%}    
+                <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
+                {# <link rel="stylesheet" href="{{ asset('Resources/bootstrap-3/css/bootstrap.css') }}" />#}
+                <link rel="stylesheet" href="{{ asset('Resources/css/bootstrap.css') }}" />
+                <link rel="stylesheet" href="{{ asset('Resources/css/style.css') }}" />
+                <style>
+                    
+                    //Posicion del boton agregar
+                    .collection>div:last-child {
+                        position:absolute;
+                    }
+
+                    div.collection > div:nth-child(2) > div:nth-child(2) > a{
+                        display: none;
+                    }
+                    
+                    .addItem{
+                        position: absolute;
+                        
+                        float: right;
+                        margin-bottom: 50px;
+                        top: 10px;
+                        left: -2px;
+                    }
+
+                        .addItem div {
+                            position: absolute;
+                        }
+                    .col-md-4{
+                        padding-top: 40px;
+                    }
+                    
+                </style>
+                {%- endblock %}
+                {%- endblock%}
+            
+
+                {% block body -%}
+                    <!-- Barra de navegacion -->
+                    {% block navigation %}
+                        {% include 'SonodigestBundle:Layout:navigation.html.twig'%}
+                    {% endblock %}
+                    
+                    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+                        
+                            <h1>Categoria imagen</h1>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        
+
+                
+                    <div class="row">  
+                        <div class="listado col-md-12">          
+                            {{ form_row(form.nombre) }}
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="listadoa">
+                            <div class="listado col-md-12">          
+                                <div class="collection" data-prototype="{% filter escape %}  {% include 'SonodigestBundle:Prototype:fotos.html.twig' with { 'form': form.imagenes.vars.prototype} %}   {% endfilter  %}"> 
+                                    {{ form_widget(form.imagenes) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                       {#<ul class="record_actions">
+                    <li>
+                        <a href="{{ path('admin_categoriaimagen') }}">
+                            Back to the list
+                        </a>
+                    </li>
+                </ul>#}
+                        <div class="col-md-12 text-center" style="margin-top: 75px;">
+                            {{ form_widget(form.submit) }}
+                        </div>
+                {{ form_widget(form._token) }}
+            {{ form_end(form) }}   
+            
+                        
+                    </div>
+                {% endblock %}
+                
+            
+
+
+
+{% block javascripts_step %}
+     
+    
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+                    
+                    <script src="{{asset('http://snapwidget.com/js/snapwidget.js')}}"></script>
+                    <!-- jQuery (Necesario para que los Plugins de Bootstrap) -->
+                    
+                    <!-- Aqui estan todos los Plugins que contiene el Framework de Boostrap -->
+                    <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
+                    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    
+    <script>
+
+    // Get the ul that holds the collection of tags
+    var collectionHolder = $('div.collection');
+        
+    // setup an "add a tag" link
+    var $addTagLink = $('<div class="row"><div class="col-md-12"><a href="#" class="add_collection_link btn btn-primary ">Agregar</a></div></div>');
+    var $removeTagLink = $('<a href="#" class="remove_placa_link btn btn-danger">Eliminar</a>');
+    var $newLinkLi = $('<div class="col-md-2 addItem"></div>').append($addTagLink);
+    
+    
+
+
+
+
+
+    jQuery(document).ready(function() {
+
+        
+        collectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+    });
+    
+    
+                
+
+    
+
+    // add the "add a tag" anchor and li to the tags ul
+    collectionHolder.append($newLinkLi);
+   
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    collectionHolder.data('index', collectionHolder.find(':input').length);
+    
+    //Identificar que form esta activo
+    /*var editar=$('div.placas').attr('id');
+    if(editar!='editar_usuario'){*/
+        addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
+       
+    //}
+    
+
+
+    $addTagLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // add a new tag form (see next code block)
+        addTagForm(collectionHolder, $newLinkLi);
+        // $('.btn_radio').attr('name', 'rol_predet');
+    });
+    
+    
+});
+
+
+function addTagForm(collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    var prototype = collectionHolder.data('prototype');
+
+    // get the new index
+    var index = collectionHolder.data('index');
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+
+    // increase the index with one for the next item
+    collectionHolder.data('index', index + 1);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<div class="col-md-4"></div>').append(newForm);
+    $newLinkLi.before($newFormLi);
+    
+
+
+    // add a delete link to the new form
+    addTagFormDeleteLink($newFormLi);
+     
+}
+
+
+
+function addTagFormDeleteLink($tagFormLi) {
+    var $removeFormA = $('<div class="col-md-1"><a class="link btn btn-danger" href="#">Eliminar</a></div>');
+    $tagFormLi.append($removeFormA);
+
+    $removeFormA.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        
+
+        $tagFormLi.remove();
+        
+    });
+}
+
+
+
+     </script>
+
+{% endblock %} 

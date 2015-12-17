@@ -79,6 +79,7 @@ class TipoCarrusel
         return $this->detalle;
     }
     
+    
      /**
      * Set estado
      *
@@ -143,6 +144,11 @@ class TipoCarrusel
         foreach ($placas as $placa) {
             $placa->setTipoCarrusel($this);
         }
+    }
+    
+      public function removePlaca(Carrusel $placa)
+    {
+        $this->placas->removeElement($placa);
     }
     
      public function __toString() {
