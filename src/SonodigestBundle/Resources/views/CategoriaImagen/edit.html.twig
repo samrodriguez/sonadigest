@@ -30,6 +30,9 @@
                         width: 100%;
                         
                     }
+                    .archivo{
+                        margin-top:10px;
+                    }
                     .addItem{
                         position: absolute;
                         
@@ -43,16 +46,37 @@
                             position: absolute;
                         }
                     .col-md-4{
-                        padding-top: 40px;
+                        margin-top: 40px;
                     }
                     
-                        .col-md-4 > div>div> div > label{
+                        .col-md-4 > div>div>  label{
                             display: none;
+                            
+                        }
+                        
+                        .col-md-4 > .col-md-1 >.link{
+                            margin-top:-32px;
+                            
                         }
                     
                     .col-md-7{
-                        margin-top: 25px;
+                        margin-top: -17px;
+                        position:relative;
+                        margin-left:-30px;
                     }
+                    .link{
+                        position:absolute;
+                        margin-left:-15px;
+                        margin-top:-25px;
+                    }
+                        
+                    .panel{
+                        box-shadow:none;
+                        
+                    }
+                    
+                    
+                    
                 </style>
                 {%- endblock %}
                 {%- endblock%}
@@ -73,7 +97,7 @@
 
                 
                     <div class="row">  
-                        <div class="listado col-md-12">          
+                        <div class="listado col-md-12"  style="height:50px">          
                             {{ form_row(edit_form.nombre, { 'attr': {'readonly': 'readonly'} }) }}
                         </div>
                         <div class="clearfix"></div>
@@ -83,14 +107,14 @@
                                     {% for key, imagen in edit_form.imagenes %}
                                         
                                     <div class="col-md-4">
-                                      <div class="panel bg-grd-light" data-fill-color="true">
+                                      
                                          <div class="panel-body">
-                                             <img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{imagenes[key].nombre}}" alt="dummy image">
+                                             <img class="archivo" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{imagenes[key].nombre}}" alt="dummy image">
                                                 {#{{ form_row(imagen.nombre) }} #}
                                                 {{ form_row(imagen) }} 
 
                                          </div>
-                                      </div>
+                                      
                                     </div>        
                                     {% endfor %}
                                 </div>
@@ -139,8 +163,8 @@
     var collectionHolder = $('div.collection');
         
     // setup an "add a tag" link
-    var $addTagLink = $('<div class="row"><div class="col-md-12"><a href="#" class="add_collection_link btn btn-primary ">Agregar</a></div></div>');
-    var $removeTagLink = $('<a href="#" class="remove_placa_link btn btn-danger">Eliminar</a>');
+    var $addTagLink = $('<div class="col-md-12"  style="height:50px"><a href="#" class="add_collection_link btn btn-primary ">Agregar</a></div>');
+    var $removeTagLink = $('<a href="#" class="btn btn-danger">Eliminar</a>');
     
     var $newLinkLi = $('<div class="col-md-2 addItem"></div>').append($addTagLink);
     var $delLinkLi = $('.foto').append($removeTagLink);
@@ -151,10 +175,16 @@
 
 
     jQuery(document).ready(function() {
-
         
+        $(document).on("change",".foto", function() {
+        //var atributo=$(this).parent().siblings('img').attr('id');
+            //alert('as');
+            mostrarImagen(this);
+        });
+      
         collectionHolder.find('.panel-body').each(function() {
             addTagFormDeleteLink($(this));
+            $('.link').css('margin-top','5px');
     });
     
     
@@ -206,7 +236,7 @@ function addTagForm(collectionHolder, $newLinkLi) {
     collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="col-md-4"></div>').append(newForm);
+    var $newFormLi = $('<div class="col-md-4"><img style="margin-top:23px" class="archivo" src="http://placehold.it/1980x400"></div>').append(newForm);
     $newLinkLi.before($newFormLi);
     
 
@@ -219,7 +249,7 @@ function addTagForm(collectionHolder, $newLinkLi) {
 
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormA = $('<div class="col-md-1"><a class="link btn btn-danger" href="#">Eliminar</a></div>');
+    var $removeFormA = $('<div class="col-md-1" ><a class="link btn btn-danger" href="#">Eliminar</a></div>');
     $tagFormLi.append($removeFormA);
 
     $removeFormA.on('click', function(e) {
@@ -237,4 +267,22 @@ function addTagFormDeleteLink($tagFormLi) {
 
      </script>
 
+     <!--ayuda a la previsualizacion de la imagen-->
+<script type="text/javascript">
+        function mostrarImagen(input) {
+     if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+       $(input).parent().parent().parent().siblings('img').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+     }
+    }
+     
+    //$("#userfile5").change(function(){
+     //mostrarImagen5(this);
+  //  });
+
+</script>
+     
 {% endblock %} 

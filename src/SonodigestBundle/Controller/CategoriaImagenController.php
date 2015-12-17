@@ -221,7 +221,7 @@ class CategoriaImagenController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Modificar','attr'=>array('class'=>'btn-success btn-sm btn')));
 
         return $form;
     }
@@ -264,7 +264,24 @@ class CategoriaImagenController extends Controller
         $editForm->handleRequest($request);
 
         
-        
+        foreach ($originalImagenes as $row) {
+                $file_path = $path.'/'.$row->getNombre();
+                    //echo '*'.$row->getNombre().'*';
+                if(file_exists($file_path) && $row->getNombre()!="") unlink($file_path);
+                if (false === $entity->getImagenes()->contains($row)) {
+                    // remove the Task from the Tag
+                    //$row->getIdcategoria()->removeImagen($row);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    //$row->setIdcategoria(null);
+
+                    //$em->persist($row);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    $em->remove($row);
+                    $em->flush();
+                }
+            }
         
         if ($editForm->isValid()) {
             
@@ -272,7 +289,7 @@ class CategoriaImagenController extends Controller
             
                         
             
-                $galeriaImagenes = new GaleriaImagenes();
+                //$galeriaImagenes = new GaleriaImagenes();
                 if($row->getFile()!=null){
                     $file_path = $path.'/'.$row->getNombre();
                     //echo '*'.$row->getNombre().'*';
@@ -303,21 +320,7 @@ class CategoriaImagenController extends Controller
             
             
             // remove the relationship between the tag and the Task
-            foreach ($originalImagenes as $row) {
-                if (false === $entity->getImagenes()->contains($row)) {
-                    // remove the Task from the Tag
-                    //$row->getIdcategoria()->removeImagen($row);
-
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    //$row->setIdcategoria(null);
-
-                    //$em->persist($row);
-
-                    // if you wanted to delete the Tag entirely, you can also do that
-                     $em->remove($row);
-                     $em->flush();
-                }
-            }
+            
             
             
             $em->flush();
