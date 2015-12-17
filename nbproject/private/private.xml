@@ -1,29 +1,23 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Layout/beneficios.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/CarruselType.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Entity/TipoCarrusel.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/index.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Controller/TipoCarruselController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Prototype/foto.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/TipoCarruselType.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Inicio/inicio.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/new.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Entity/Carrusel.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/show.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Entity/TipoCarrusel.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/CarruselType.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/index.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/edit.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Controller/CarruselController.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Controller/TipoCarruselController.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Form/TipoCarruselType.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Carrusel/index.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Carrusel/new.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/app/config/parameters.yml</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/Carrusel/edit.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/sonadigest/src/SonodigestBundle/Resources/views/TipoCarrusel/new.html.twig</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> origin/master
