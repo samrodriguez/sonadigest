@@ -24,6 +24,21 @@ class FotosController extends Controller{
      */
     public function indexAction()
     {
-        return array();     
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SonodigestBundle:CategoriaImagen')->findAll();
+        
+        $fotos = $em->getRepository('SonodigestBundle:GaleriaImagenes')->findAll();
+        
+        //var_dump($entities);
+        //var_dump($fotos);
+        
+        
+        
+        return array(
+            'categoriasImagenes'=>$entities,
+            'fotos'=>$fotos,
+        );     
     }
 }
