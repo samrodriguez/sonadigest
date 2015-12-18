@@ -3,15 +3,15 @@
 
 {% block bod -%}
     {#<h1>Entrada list</h1>#}
-    
+
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-        
+
                 <a href="{{ path('admin_entrada_new') }}">
                     <div class="botonpanel">Crear nueva entrada</div>
                 </a>
-                </div>
+            </div>
         </div>
     </div>
 
@@ -62,11 +62,24 @@
             </div>
         </div>
     </div>
-    <ul>
+
+    {#<div class="col-md-4"></div>
+    <div class="col-md-4"><div class="text-center">#}
+            {#<a href="{{ path('admin_categoria') }}">
+                <div class="botonpanel"> Regresar a la listaxx </div>
+            </a>#}
+            {#{{ form_widget(form.submit) }}#}
+            {#<a href="{{ path('admin_entrada_new') }}">
+                <div class="botonpanel">Create a new entry</div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4"></div>#}
+    {#<ul>
         <li>
             <a href="{{ path('admin_entrada_new') }}">
                 Create a new entry
             </a>
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}

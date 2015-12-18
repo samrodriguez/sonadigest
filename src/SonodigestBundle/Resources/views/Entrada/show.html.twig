@@ -34,11 +34,11 @@
             </div>
         </div>
     </div>
-    
-                        <div class="container">
-    <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada') }}"><div class="botonpanel">Regresar a la lista</div></a></div>                 
-    <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar</div></a></div>                 
-    <div class="col-md-4 text-center">{{ form(delete_form) }}</div> 
+
+    <div class="container">
+        <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada') }}"><div class="botonpanel">Regresar a la lista</div></a></div>                 
+        <div class="col-md-4 text-center" style="padding-left:100px;"><a href="{{ path('admin_entrada_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar</div></a></div>                 
+        <div class="col-md-4 text-center">{{ form(delete_form) }}</div> 
     </div>
 
 {% endblock %}

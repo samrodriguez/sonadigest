@@ -40,17 +40,21 @@
             <div class="col-md-1"></div>
             <div class="clearfix"></div>
 
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-4" style="padding-left: 120px;">
+                <a href="{{ path('admin_entrada') }}">
+                <div class="botonpanel">Regresar a lista</div>
+            </a>
+            </div>
+            <div class="col-md-4 text-center">
                 {{ form_widget(edit_form._token)}}
                 {{ form(edit_form)}}
             </div>
-            <div class="col-md-3 pull-left">
+            <div class="col-md-4 pull-left">
                 {{ form(delete_form) }}
                 {{ form_end(edit_form) }}
             </div> 
 
-            <div class="col-md-3"></div>
+            {#<div class="col-md-3"></div>#}
         </div>
     </div>
 
