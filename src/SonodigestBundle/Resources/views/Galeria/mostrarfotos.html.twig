@@ -1,0 +1,53 @@
+{% if fotos %}
+    {% for entity in fotos%}
+                    {#<div class="col-md-3">
+                        <img style="width: 100%;" class="{{foto.id}}" src="{{ asset('Photos/galeriafotos/')}}{{foto.nombre}}">
+                    </div>#}
+                                <div class="gallery-col mix col-md-4 {{entity.idcategoria.id}}" data-mysort="147">
+                                  <div class="gallery-item" itemprop="associatedMedia" itemscope itemtype="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}">
+                                    <div class="thumbnail" data-lref="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}" itemprop="contentUrl" data-size="1980x400">
+                                      <div class="embed-responsive embed-responsive-16by9">
+                                        <img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}" alt="dummy image">
+                                        <div class="embed-bar">
+
+                                        </div>
+                                        <div class="embed-bar hidden-gallery-list embed-bar-bottom">
+
+                                          <div><i class="icon-calendar"></i> {# {{ entity.consulta.fechaConsulta|date('d-m-Y')}}#}</div>
+                                        </div>
+                                      </div><!-- /.embed -->
+                                    </div><!-- /.thumbnail -->
+                                    <div class="gallery-info">
+                                      <p class="hidden-gallery-grid text-muted pull-right"><small></small></p>
+                                      <h3 class="img-title" itemprop="caption description"></h3>
+                                      <p class="img-desc"></p>
+                                      <div class="hidden-gallery-grid">
+                                        <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="copy image link"><i class="icon-link"></i></a>
+                                        <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="edit"><i class="icon-pencil"></i></a>
+                                        <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="delete"><i class="icon-close"></i></a>
+                                      </div>
+                                    </div><!-- /.gallery-info -->
+                                  </div><!-- /.gallery-item -->
+                                </div><!-- /.cols -->
+    {% endfor %}
+    
+
+
+{% else %}
+    <div class="col-md-4">
+        No contiene fotos    
+    </div>
+{% endif %}
+    
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+    <script src="{{asset('Resources/js/photoswipe/jquery.mixitup.js')}}"></script>
+    <script src="{{asset('Resources/js/photoswipe/imagesloaded.pkgd.js')}}"></script>
+    <script src="{{asset('Resources/js/photoswipe/photoswipe.pkgd.js')}}"></script>
+    <script src="{{ asset('Resources/wrapkit/scripts/demo/page-gallery-demo.js') }}"></script>
+
+{% endblock %}
+
+
+

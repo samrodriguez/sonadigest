@@ -4,38 +4,61 @@
     {{parent()}}
     <style>
         
-        //Posicion del boton agregar
-        .placas>div:last-child {
-            position:absolute;
-        }
-      
-        .addItem{
-            position: absolute;
-            height: 50px;
-            float: right;
-            margin-bottom: 50px;
-            padding-bottom: 100px;
-            top: 450px;
-            left: 785px;
-        }
-        
-            .addItem div {
-                position: absolute;
-            }
-        
-        .col-md-4{
-            padding-top: 40px;
-        }
-       
-        .btn>div:last-child {
-            position:absolute;
-        }
-               
-        
-       .link{left: -48px;
-             top: 3px;
-         position: relative;
-       }
+        .collection>div:last-child {
+                        position:absolute;
+                    }
+
+                    {#div.collection > div:nth-child(2) > div:nth-child(2) > a{
+                        display: none;
+                    }#}
+                    img{
+                        width: 100%;
+                        
+                    }
+                    .archivo{
+                        margin-top:10px;
+                    }
+                    .addItem{
+                        position: absolute;
+                        
+                        float: right;
+                        margin-bottom: 50px;
+                        top: 10px;
+                        left: -2px;
+                    }
+
+                        .addItem div {
+                            position: absolute;
+                        }
+                    .col-md-4{
+                        margin-top: 40px;
+                    }
+                    
+                        .col-md-4 > div>div>  label{
+                            display: none;
+                            
+                        }
+                        
+                        .col-md-4 > .col-md-1 >.link{
+                            margin-top:-32px;
+                            
+                        }
+                    
+                    .col-md-7{
+                        margin-top: -17px;
+                        position:relative;
+                        margin-left:-30px;
+                    }
+                    .link{
+                        position:absolute;
+                        margin-left:-15px;
+                        margin-top:-25px;
+                    }
+                        
+                    .panel{
+                        box-shadow:none;
+                        
+                    }
   
     </style>
     
@@ -59,21 +82,29 @@
               
             </div> 
               
-              <div  style="margin-bottom:20px" class="placas" data-prototype="{% filter escape %}  {% include 'SonodigestBundle:Prototype:foto.html.twig' with { 'form': edit_form.placas.vars.prototype} %}   {% endfilter  %}"> 
-
-                      {% for key, placa in edit_form.placas %}
+              <div class="row">  
+                        
+                        <div class="clearfix"></div>
+                        <div id="listadoa">
+                            <div class="listado col-md-12">          
+                                <div class="collection" data-prototype="{% filter escape %}  {% include 'SonodigestBundle:Prototype:fotos.html.twig' with { 'form': edit_form.placas.vars.prototype} %}   {% endfilter  %}"> 
+                                    {% for key, imagen in edit_form.placas %}
                                         
-                       <div class="col-md-4">
-                         <div class="panel bg-grd-light" data-fill-color="true">
-                            <div class="panel-body">
-                                <img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/carrusel/')}}{{placas[key].imagen}}" alt="dummy image" style="width: 100%;"> 
-                                  {{ form_row(placa) }}   
- 
+                                    <div class="col-md-4">
+                                      
+                                         <div class="panel-body">
+                                             <img class="archivo" itemprop="thumbnail" src="{{ asset('Photos/carrusel/')}}{{placas[key].imagen}}" alt="dummy image">
+                                                {#{{ form_row(imagen.nombre) }} #}
+                                                {{ form_row(imagen) }} 
+
+                                         </div>
+                                      
+                                    </div>        
+                                    {% endfor %}
+                                </div>
                             </div>
-                         </div>
-                       </div>        
-                       {% endfor %}
-              </div>
+                        </div>
+                    </div>    
                       
            </div>
     <div class="col-sm-12 col-md-12"> 
@@ -100,59 +131,77 @@
 {% endblock %}
 
 {% block javascripts_step %}
+     
     
- <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
-
-<script>
-
-// Get the ul that holds the collection of tags
-var collectionHolder = $('div.placas');
-var col=$('#hnr_sircimbundle_estudioradiologicotype_placas');
-// setup an "add a tag" link
-var $addTagLink = $('<div class="col-md-2"><a href="#" class=" botonpanel btn btn-primary ">Agregar otra imagen</a></div>');
-var $removeTagLink = $('<a href="#" class="remove_placa_link btn btn-danger">Eliminar</a>');
-var $newLinkLi = $('<div class="col-md-12 addItem"></div>').append($addTagLink);
-var $delLinkLi = $('#hnr_sircimbundle_estudioradiologicotype_placas.required').append($removeTagLink);
-
-
-
-
-
-jQuery(document).ready(function() {
+    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+                    
+                    <script src="{{asset('http://snapwidget.com/js/snapwidget.js')}}"></script>
+                    <!-- jQuery (Necesario para que los Plugins de Bootstrap) -->
+                    
+                    <!-- Aqui estan todos los Plugins que contiene el Framework de Boostrap -->
+                    <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
+                    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     
-     $('div[id*="sonodigestbundle_tipocarrusel_placas_"]').siblings().remove();   // Oculta el id de la colección
+    <script>
 
-    //$("#dgplusbellebundle_consulta_pacienteSelectBoxItOptions li").remove();
+    // Get the ul that holds the collection of tags
+    var collectionHolder = $('div.collection');
+        
+    // setup an "add a tag" link
+    var $addTagLink = $('<div class="col-md-12"  style="height:50px"><a href="#" class="add_collection_link btn btn-primary ">Agregar</a></div>');
+    var $removeTagLink = $('<a href="#" class="btn btn-danger">Eliminar</a>');
+    
+    var $newLinkLi = $('<div class="col-md-2 addItem"></div>').append($addTagLink);
+    var $delLinkLi = $('.foto').append($removeTagLink);
+    
 
-  /*  $('#dgplusbellebundle_consulta_fechaConsulta').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'YYYY-MM-DD'
-                    },
-                });*/
 
-   //$('input[id$=dgplusbellebundle_plantilla_placas_]').selectBoxIt;
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(input).parent().parent().parent().siblings('img').attr('src', e.target.result);
+                $(input).parent().parent().parent().parent().parent().parent().siblings('img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
-    collectionHolder.find('.panel-body').each(function() {
-        addTagFormDeleteLink($(this));
 
+    jQuery(document).ready(function() {
+        
+        $(document).on("change",".imagen", function() {
+        //var atributo=$(this).parent().siblings('img').attr('id');
+            //alert('as');
+            mostrarImagen(this);
+        });
+      
+        collectionHolder.find('.panel-body').each(function() {
+            addTagFormDeleteLink($(this));
+            $('.link').css('margin-top','5px');
     });
+    
+    
+                
 
     
 
     // add the "add a tag" anchor and li to the tags ul
     collectionHolder.append($newLinkLi);
-
+   
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     collectionHolder.data('index', collectionHolder.find(':input').length);
     
     //Identificar que form esta activo
-    var editar=$('div.placas').attr('id');
-   // if(editar!='editar_usuario'){
+    /*var editar=$('div.placas').attr('id');
+    if(editar!='editar_usuario'){*/
         //addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
-   // }
+       
+    //}
     
 
 
@@ -164,8 +213,7 @@ jQuery(document).ready(function() {
         addTagForm(collectionHolder, $newLinkLi);
         // $('.btn_radio').attr('name', 'rol_predet');
     });
-
-
+    
     
 });
 
@@ -185,38 +233,27 @@ function addTagForm(collectionHolder, $newLinkLi) {
     collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="col-md-4"></div>').append(newForm);
+    var $newFormLi = $('<div class="col-md-4"><img style="margin-top:23px" class="archivo" src="http://placehold.it/1980x400"></div>').append(newForm);
     $newLinkLi.before($newFormLi);
     
 
 
     // add a delete link to the new form
     addTagFormDeleteLink($newFormLi);
-    //validarPaquete(); 
-    $('.btn_radio').click(function(event) {
-        /* Act on the event */
-        var id = $(this).attr('id');
-        // alert(id);
-        $('.btn_radio').prop('checked', false);
-        $('#'+id).prop('checked', true);
-        $('.btn_radio').removeClass('errorform');
-    });
+     
 }
 
+
+
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormA = $('<div class="col-md-1"><a class="link btn btn-danger" style="margin-left:35px" href="#">Eliminar</a></div>');
+    var $removeFormA = $('<div class="col-md-1" ><a class="link btn btn-danger" href="#">Eliminar</a></div>');
     $tagFormLi.append($removeFormA);
 
     $removeFormA.on('click', function(e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
 
-        // remove the li for the tag form
-        $('input[name="rol_predet"]:checked').each(function() {
-            //$(this).val() es el valor del checkbox correspondiente
-           // alert('chequeado'); 
-           $('#hnr_sircimbundle_usuariotype_placas_0_usroPredeterminado').prop('checked', true);
-        });
+        
 
         $tagFormLi.remove();
         
@@ -225,6 +262,16 @@ function addTagFormDeleteLink($tagFormLi) {
 
 
 
- </script>
-   
-{% endblock %}
+     </script>
+
+     <!--ayuda a la previsualizacion de la imagen-->
+<script type="text/javascript">
+     
+     
+    //$("#userfile5").change(function(){
+     //mostrarImagen5(this);
+  //  });
+
+</script>
+     
+{% endblock %} 

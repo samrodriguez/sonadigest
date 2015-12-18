@@ -43,7 +43,7 @@ class TipoCarrusel
      * @Assert\File(maxSize="6000000")
      */
     private $file;
-
+    
 
     /**
      * Get id
