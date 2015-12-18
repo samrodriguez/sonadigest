@@ -1,0 +1,57 @@
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Editar Categoria Blog{% endblock %}
+{% block bod -%}
+    
+    {{ form_start(edit_form) }}
+    {{ form_errors(edit_form)}}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="col-md-2" style="margin-left: 75px;">
+                    {{ form_label(edit_form.nombre) }}
+                </div>
+                <div class="col-md-6" style="margin-left: 25px;">
+                    {{ form_widget(edit_form.nombre) }}
+                </div>
+                
+  
+            </div>
+            <div class="col-md-4"></div>
+            <div class="clearfix"></div>
+            
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <div class="text-center">
+                {{ form_widget(edit_form._token)}}
+                {{ form(edit_form)}}
+                </div>
+            </div>
+            <div class="col-md-3">
+                {{ form(delete_form) }}
+                {{ form_end(edit_form) }}</div>
+            <div class="col-md-3"></div>
+        </div>        
+    </div>
+                
+{% endblock %}
+
+
+
+{#{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>categoriablog edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_categoriablog') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}#}

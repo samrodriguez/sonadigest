@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <th class="text-center">Descripcion</th>
-                        <td class="text-justify">{{ entity.descripcion | raw }}</td>
+                        <td class="text-justify" style="padding: 10px;">{{ entity.descripcion | raw }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,8 +35,8 @@
     <div class="clearfix"></div>                
 
     
-    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria') }}"><div class="botonpanel">Regresar a la lista</div></a></div>                 
-    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}"><div class="botonpanel">Editar</div></a></div>                 
+    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria') }}"><div class="botonpanel" style="margin-left: 50px;">Regresar a la lista</div></a></div>                 
+    <div class="col-md-4 text-center"><a href="{{ path('admin_subcategoria_edit', { 'id': entity.id }) }}"><div class="botonpanel" style="margin-left: 50px;">Editar</div></a></div>                 
     <div class="col-md-44 text-center">{{ form(delete_form) }}</div>                 
                     
 </div>

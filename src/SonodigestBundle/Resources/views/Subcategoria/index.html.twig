@@ -20,8 +20,8 @@
                     {{ form_widget(form.titulo) }}
                 </div>
                 <div class="row" style="margin: 10px 0px; ">
-                    {{ form_label(form.descripcion) }}
-                    {{ form_widget(form.descripcion) }}
+                    {{ form_label(form.descripcion)}}
+                    {{ form_widget(form.descripcion)|raw }}
                 </div>
                 <div class="row" style="margin: 10px 0px; ">
                     <div class="col-md-1" style="padding-left: 0px;">{{ form_label(form.idcategoria) }}</div>
@@ -84,7 +84,7 @@
                                     <td class="text-center">{{ entity.nombre }}</td>
                                     <td class="text-center">{{ entity.titulo }}</td>
                                     <td class="text-center">{{ entity.foto }}</td>
-                                    <td class="text-justify">{{ entity.descripcion | raw}}</td>
+                                    <td class="text-justify" style="padding: 0px 10px;">{{ entity.descripcion | raw}}</td>
                                     <td>
                                         <ul>
                                             <li>
