@@ -26,7 +26,7 @@
 
 
                 <!-- Bootstrap -->
-        <link rel="stylesheet" href="{{ asset('Resources/wrapkit/styles/bootstrap.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('Resources/wrapkit/styles/bootstrap.css') }}">#}
         <!-- Bootstrap -->
         <!-- Dependencies -->
         <link rel="stylesheet" href="{{ asset('Resources/wrapkit/styles/dependencies.css') }}">
@@ -46,7 +46,22 @@
         <link rel="stylesheet" href="{{ asset('Resources/fullcalendar/css/fullcalendar.print.css') }}" media="print"/>
         <link rel="stylesheet" href="{{ asset('Resources/bValidator-0.73/themes/bvalidator.theme.bootstrap.rt.css') }}" />
         
-        
+        <style>
+            .active{
+                background: #76B9C4;
+                color:#FFF;
+            }
+            .inactive{
+                background: #FFF;
+                color: #76B9C4;
+            }
+            .botonpanel:hover{
+                background: #76B9C4;
+                opacity:0.5;
+                color:#FFF;
+                margin-top: 20px;
+            }
+        </style>
                 {%- endblock %}
                 {%- endblock%}
             </head>
@@ -76,12 +91,9 @@
     <div class="row">
         <div class="container">
             <div class="col-md-3"></div>
-            <div class="col-md-1 text-center botonpanel" style="padding: 10px; border-radius: 5px; margin:5px; background-color: #FFF; border:1px solid #76B9C4; color: #76B9C4;"> Todas</div>
+            <div class="col-md-1 text-center botonpanel active " id="0" style="padding: 10px; border-radius: 5px; margin:25px 5px -15px 5px; border:1px solid #76B9C4;"> Todas</div>
             {% for categoriaImagen in categoriasImagenes %}
-
-                <div class="col-md-1 text-center botonpanel {{categoriaImagen.id}}" style="padding: 10px; border-radius: 5px;margin:5px; background-color: #FFF; border:1px solid #76B9C4;color: #76B9C4;">{{categoriaImagen.nombre}}</div>
-
-
+                <div class="col-md-1 text-center botonpanel inactive" id="{{categoriaImagen.id}}" style="padding: 10px; border-radius: 5px; margin:25px 5px -15px 5px; border:1px solid #76B9C4;">{{categoriaImagen.nombre}}</div>
             {% endfor %}
             <div class="col-md-3"></div>
         </div>
@@ -89,43 +101,12 @@
 {% endblock %}
 
 {% block fotos %}
-    
-    
+   
     <div class="row" style="margin-top:50px; margin-bottom: 50px;">
         <div class="container">
             <div class="content-body">
                 <div id="gallery" class="gallery-content gallery-grid" itemscope itemtype="http://schema.org/ImageGallery">
-                    {% for entity in fotos%}
-                {#<div class="col-md-3">
-                    <img style="width: 100%;" class="{{foto.id}}" src="{{ asset('Photos/galeriafotos/')}}{{foto.nombre}}">
-                </div>#}
-                            <div class="gallery-col mix col-md-4" data-mysort="147">
-                              <div class="gallery-item" itemprop="associatedMedia" itemscope itemtype="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}">
-                                <div class="thumbnail" data-lref="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}" itemprop="contentUrl" data-size="1980x400">
-                                  <div class="embed-responsive embed-responsive-16by9">
-                                    <img class="embed-responsive-item" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{entity.nombre}}" alt="dummy image">
-                                    <div class="embed-bar">
-
-                                    </div>
-                                    <div class="embed-bar hidden-gallery-list embed-bar-bottom">
-
-                                      <div><i class="icon-calendar"></i> {# {{ entity.consulta.fechaConsulta|date('d-m-Y')}}#}</div>
-                                    </div>
-                                  </div><!-- /.embed -->
-                                </div><!-- /.thumbnail -->
-                                <div class="gallery-info">
-                                  <p class="hidden-gallery-grid text-muted pull-right"><small></small></p>
-                                  <h3 class="img-title" itemprop="caption description"></h3>
-                                  <p class="img-desc"></p>
-                                  <div class="hidden-gallery-grid">
-                                    <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="copy image link"><i class="icon-link"></i></a>
-                                    <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="edit"><i class="icon-pencil"></i></a>
-                                    <a href="#" class="btn btn-default" data-toggle="tooltip" data-container="body" title="delete"><i class="icon-close"></i></a>
-                                  </div>
-                                </div><!-- /.gallery-info -->
-                              </div><!-- /.gallery-item -->
-                            </div><!-- /.cols -->
-            {% endfor %}
+                    {% include 'SonodigestBundle:Galeria:mostrarfotos.html.twig'%}
             </div>
                         </div>
             </div>
@@ -390,9 +371,9 @@
                     
                     
                     
-                    {% block foot %}
-                        {% include 'SonodigestBundle:Layout:footer.html.twig'%}
-                    {% endblock %}  
+                {% block foot %}
+                    {% include 'SonodigestBundle:Layout:footer.html.twig'%}
+                {% endblock %}  
                 {% endblock %}
                 
                 {% block javascripts_step %}
@@ -452,8 +433,66 @@
         <script src="{{asset('Resources/js/photoswipe/imagesloaded.pkgd.js')}}"></script>
         <script src="{{asset('Resources/js/photoswipe/photoswipe.pkgd.js')}}"></script>
         <script src="{{ asset('Resources/wrapkit/scripts/demo/page-gallery-demo.js') }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
                     <script>
+                        
+                        
                         $(document).ready(function () {
+                            var id = 0;
+                            var arOriginal=[];
+                            
+                            $('.gallery-col').each(function( index, element ) {
+                                    //alert("CLASE: "+$(element).attr('class'));
+                                //if(!$(element).hasClass(id))  {
+                                    //alert("Se encontro una clase: "+$(element).attr('class'));
+                                    arOriginal.push($(element));
+                              //      $(element).remove();
+                            });
+                                
+                            $('.botonpanel').on('click',function(){
+                                //$('#gallery').html('');
+                                $('#gallery').html("<div class='col-md-12 text-center'><img src='{{ asset('Resources/img/loading.gif') }}'></div>");
+                                $( ".botonpanel" ).each(function( index, element ) {
+                                    $(element).removeClass('active');
+                                    $(element).addClass('inactive');
+                                });
+                                $(this).addClass('active');
+                                $(this).removeClass('inactive');
+                                var idNuevo = $(this).attr('id');
+                                //alert("nuevo: "+idNuevo);
+                                if(id!=idNuevo){
+                                    id=idNuevo;
+                                    //alert("id: "+id);
+                                }
+                                
+                                var url = Routing.generate('admin_recuperar_fotos', { id: id});
+                                $('#gallery').load(url);
+                                
+                                //alert("Categoria: "+id);
+                                //$('gallery-col').removeClass('gallery-col');
+                                //var ar=[];
+                                {#arOriginal.forEach(function(entry) {
+                                    //console.log(entry);
+                                    $('#gallery').append(entry);
+                                });#}
+                                {#if(id!=0){
+                                    $('.gallery-col').each(function( index, element ) {
+                                        //alert("CLASE: "+$(element).attr('class'));
+                                        //$(element).fadeIn(1600);
+                                        if(!$(element).hasClass(id))  {
+                                            //alert("Se encontro una clase: "+$(element).attr('class'));
+                                            //ar.push($(element).html());
+                                            //$(element).fadeOut(1600);
+                                            $(element).remove();
+                                        }    
+                                    });
+                                }#}
+                                //$('.filter-result').hide();
+                                //alert(ar[0]);
+                                //$("."+id).show();
+                                
+                            });
                             
                         });
                     </script>

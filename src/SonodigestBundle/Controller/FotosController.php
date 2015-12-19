@@ -41,4 +41,40 @@ class FotosController extends Controller{
             'fotos'=>$fotos,
         );     
     }
+    
+    
+    
+    
+    
+    /**
+     * Lists all Categoria entities.
+     *
+     * @Route("/recuperarfotos/{id}", name="admin_recuperar_fotos", options={"expose"=true})
+     * @Method("GET")
+     * @Template("SonodigestBundle:Galeria:mostrarfotos.html.twig")
+     */
+    public function mostrarfotosAction($id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+
+        //$entities = $em->getRepository('SonodigestBundle:CategoriaImagen')->findAll();
+        if($id==0){
+            $fotos = $em->getRepository('SonodigestBundle:GaleriaImagenes')->findAll();
+        }
+        else{
+            $fotos = $em->getRepository('SonodigestBundle:GaleriaImagenes')->findBy(array('idcategoria'=>$id));
+        }
+        
+        //var_dump($entities);
+        //var_dump($fotos);
+        
+        
+        
+        return array(
+            //'categoriasImagenes'=>$entities,
+            'fotos'=>$fotos,
+        );     
+    }
+    
 }

@@ -75,14 +75,29 @@ class CiruyprocController extends Controller{
         $entity = $em->getRepository('SonodigestBundle:Subcategoria')->find($id);
         
         //var_dump($entity);
+        $path=$this->getParameter('photo.subcategoria').$entity->getFoto();
+        
+        
         
         if(count($entity)!=0){
-            $subcategoria['regs'] = $entity->getFoto();  //Registro encontrado
+            if($entity->getFoto()!=""){
+                if (file_exists($path)) {
+                    $subcategoria['regs'] = $entity->getFoto();  //Registro encontrado
+                } else {
+                    $subcategoria['regs'] = 0;  //No existe la imagen en el directorio
+                }
+            }
+            else{
+                $subcategoria['regs'] = 0;  //Nombre de foto vacío
+            }
+                
+                
         }
         else{
             $subcategoria['regs'] = 1;  //Registro no encontrada
         }
-                 
+        
+        //var_dump($path);
         
         return new Response(json_encode($subcategoria));
     }

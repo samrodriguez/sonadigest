@@ -20,10 +20,16 @@ class TratamosController extends Controller{
      *
      * @Route("/", name="admin_tratamos")
      * @Method("GET")
-     * @Template()
+     * @Template("SonodigestBundle:Tratamos:tratamos.html.twig")
      */
     public function indexAction()
     {
-         return $this->render('SonodigestBundle:Tratamos:tratamos.html.twig');     
+        $em=$this->getDoctrine()->getManager();
+        
+        $problemas = $em->getRepository('SonodigestBundle:Problema')->findAll();
+        
+        return array(
+                'problemas' =>$problemas,
+        );     
     }
 }

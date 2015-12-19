@@ -28,7 +28,9 @@
                         {% include 'SonodigestBundle:Layout:navigation.html.twig'%}
                     {% endblock %}
                     {% block banner %}
-                        {% include 'SonodigestBundle:Ciruyproc:banner.html.twig'%}
+                        <div class="text-center" id="imagen">
+                            {% include 'SonodigestBundle:Ciruyproc:banner.html.twig'%}
+                        </div>
                     {% endblock %}
                     <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
                         <div class="row">
@@ -64,14 +66,31 @@
                             
                             
                             $('.subcategoriaLink').on('click', function(){
+                                //
+                                $('#bannerSubcategoria').css('opacity','0.10');
+                                $('#loading').css('display','inline');
+                                
+                                
+                                {#$('#imagen').html("<div class='text-center'></div>");#}
                                 var href = $(this).attr('href');
                                 var id = $(this).attr('id');
                                 $.getJSON(Routing.generate('get_subcategoriaFoto', { id: id}), 
                                 function(data) {
+                                    var src="";
+                                    $('#contenidoSubcategoria').load(href);
                                     if(data.regs!=1){
-                                        var src="{{ asset('Photos/subcategoria/')}}"+data.regs;
                                         
-                                        $('#contenidoSubcategoria').load(href);
+                                        if(data.regs!=0 && data.regs!=1)
+                                            src="{{ asset('Photos/subcategoria/')}}"+data.regs;
+                                        else
+                                            src="http://placehold.it/1980x400";
+                                        
+                                        $('#bannerSubcategoria').attr('src',src);
+                                        $('#loading').css('display','none');
+                                        $('#bannerSubcategoria').css('opacity','1');
+                                    }
+                                    else{
+                                        src="http://placehold.it/1980x400";
                                         $('#bannerSubcategoria').attr('src',src);
                                     }
 
