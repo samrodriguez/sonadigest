@@ -21,7 +21,8 @@ class EntradaType extends AbstractType
                 'required' => true
             ))
             ->add('escritapor', 'text', array(
-                'required' => true
+                'required' => true,
+                'label' => 'Escrita por'
             ))
             //->add('fecha')
             ->add('contenido', 'textarea',array(

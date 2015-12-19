@@ -52,7 +52,7 @@
         </ul> -->
 
                 <div class="col-md-3">
-                    
+
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">{{ form_widget(form.submit) }}</div>
@@ -73,16 +73,21 @@
     </div>
     <div class="clearfix"></div>
 
-    <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
-    <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            validarUsuario();
-        });
-        {{ tinymce_init() }}
-    </script>
+    {% block javascripts_step %}
+        <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/jquery.bvalidator.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('Resources/bValidator-0.73/bvalidator.lang.es.js')}}" ></script>
+        <script src="{{ asset('Resources/funciones_validacion/usuario.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                validarUsuario();
+            });
+        </script>
+        <script>
+            {{ tinymce_init() }}
+        </script>
+
+    {% endblock %}
 
 {% endblock %}
 {#<h1>Entrada creation</h1>

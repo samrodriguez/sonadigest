@@ -17,16 +17,26 @@
                 <link rel="stylesheet" href="{{ asset('Resources/css/bootstrap.css') }}" />
                 <link rel="stylesheet" href="{{ asset('Resources/css/style.css') }}" />
                 <style>
-                    
+                    h3{
+                        margin-bottom: 30px;
+                        font-weight: bold;
+                    }
                     //Posicion del boton agregar
                     .collection>div:last-child {
                         position:absolute;
                     }
 
-                    div.collection > div:nth-child(2) > div:nth-child(2) > a{
+                    .collection > div:nth-child(2) > div:nth-child(3) {
                         display: none;
                     }
+                    img{
+                        width: 100%;
+                        
+                    }
                     
+                    .archivo{
+                        margin-top:10px;
+                    }
                     .addItem{
                         position: absolute;
                         
@@ -43,6 +53,23 @@
                         padding-top: 40px;
                     }
                     
+                    
+                    .col-md-7{
+                        margin-top: -17px;
+                        position:relative;
+                        margin-left:-30px;
+                    }
+                    .link{
+                        position:absolute;
+                        margin-left:-15px;
+                        margin-top:-25px;
+                    }
+                    
+                    .panel{
+                        box-shadow:none;
+                        
+                    }
+                    
                 </style>
                 {%- endblock %}
                 {%- endblock%}
@@ -56,7 +83,7 @@
                     
                     <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
                         
-                            <h1>Categoria imagen</h1>
+                            <h3>Categoría imagen</h3>
     {{ form_start(form) }}
         {{ form_errors(form) }}
         
@@ -64,12 +91,14 @@
                 
                     <div class="row">  
                         <div class="listado col-md-12">          
-                            {{ form_row(form.nombre) }}
+                            <label style="margin-bottom: 20px; margin-right: 20px;">Nombre </label>{{ form_widget(form.nombre) }}
                         </div>
                         <div class="clearfix"></div>
                         <div id="listadoa">
                             <div class="listado col-md-12">          
                                 <div class="collection" data-prototype="{% filter escape %}  {% include 'SonodigestBundle:Prototype:fotos.html.twig' with { 'form': form.imagenes.vars.prototype} %}   {% endfilter  %}"> 
+                                    {#<img class="archivo" itemprop="thumbnail" src="http://placehold.it/1980x400" alt="dummy image">#}
+                                    
                                     {{ form_widget(form.imagenes) }}
                                 </div>
                             </div>
@@ -83,7 +112,7 @@
                     </li>
                 </ul>#}
                         <div class="col-md-12 text-center" style="margin-top: 75px;">
-                            {{ form_widget(form.submit) }}
+                            <a href="{{path('admin_categoriaimagen')}}" class="btn btn-default btn-sm"> Regresar al listado</a> {{ form_widget(form.submit) }}
                         </div>
                 {{ form_widget(form._token) }}
             {{ form_end(form) }}   
@@ -110,6 +139,7 @@
                     <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
                     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/validaciones/categoriaimagen.js')}}" ></script>
     
     <script>
 
@@ -123,19 +153,32 @@
     
     
 
-
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(input).parent().parent().parent().siblings('img').attr('src', e.target.result);
+                $(input).parent().parent().parent().parent().parent().parent().siblings('img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
 
 
     jQuery(document).ready(function() {
 
+        $(document).on("change",".foto", function() {
+        //var atributo=$(this).parent().siblings('img').attr('id');
+            //alert('as');
+            mostrarImagen(this);
+        });
         
-        collectionHolder.find('li').each(function() {
+        collectionHolder.find('.panel-body').each(function() {
             addTagFormDeleteLink($(this));
-    });
-    
-    
-                
+            $('.link').css('margin-top','5px');
+        
+        });
 
     
 
@@ -164,7 +207,7 @@
         // $('.btn_radio').attr('name', 'rol_predet');
     });
     
-    
+    validarCategoriaImagen();
 });
 
 
@@ -183,7 +226,7 @@ function addTagForm(collectionHolder, $newLinkLi) {
     collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="col-md-4"></div>').append(newForm);
+    var $newFormLi = $('<div class="col-md-4"><img style="margin-top:23px" class="archivo" src="http://placehold.it/1980x400"></div>').append(newForm);
     $newLinkLi.before($newFormLi);
     
 

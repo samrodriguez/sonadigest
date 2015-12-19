@@ -60,7 +60,7 @@ class Entrada
     /**
      * @var \Categoriablog
      *
-     * @ORM\ManyToOne(targetEntity="Categoriablog")
+     * @ORM\ManyToOne(targetEntity="Categoriablog", inversedBy="entrada", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idCategoria", referencedColumnName="id")
      * })

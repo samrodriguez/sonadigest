@@ -1,63 +1,77 @@
-{#{% extends '::base.html.twig' %}#}
 {% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
 {% block titulo %}Editar Entrada{% endblock %}
 
 {% block bod -%}
-    {#<h1>Entrada edit</h1>#}
-
-    {{ form_start(edit_form) }}
-    {{ form_errors(edit_form)}}
 
     <div class="container">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
+                {{ form_start(edit_form) }}
+                {{ form_errors(edit_form) }}
                 <div class="row" style="margin: 10px 0px; ">
-                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(edit_form.titulo) }}</div>
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(edit_form.titulo) }}</div>
                     {{ form_widget(edit_form.titulo) }}
-                </div> 
-
+                </div>
                 <div class="row" style="margin: 10px 0px; ">
-                    <div class="col-md-1" style="padding-left: 0px;">{{ form_label(edit_form.escritapor) }}</div>
+                    <div class="col-md-2" style="padding-left: 0px;">{{ form_label(edit_form.escritapor) }}</div>
                     {{ form_widget(edit_form.escritapor) }}
                 </div>
-
                 <div class="row" style="margin: 10px 0px; ">
                     {{ form_label(edit_form.contenido) }}
                     {{ form_widget(edit_form.contenido) }}
                 </div>
 
+
                 <div class="row" style="margin: 10px 0px; ">
                     <div class="col-md-2" style="padding-left: 0px;">{{ form_label(edit_form.idcategoria) }}</div>
                     {{ form_widget(edit_form.idcategoria) }}
                 </div>
+                <div class="row" style="margin: 10px 0px; "> 
+                    <div class="col-md-12" style="padding-left: 0px;">
+                        <div class="col-md-2" style="padding-left: 0px;">{{ form_label(edit_form.idimagen.file) }}</div>
+                        <div class="col-md-10" style="padding-left: 0px;">{{ form_widget(edit_form.idimagen.file) }}</div>
+                    </div>
 
-                <div class="row" style="margin: 10px 0px; ">
-                    {{ form_label(edit_form.idimagen) }}
-                    {{ form_widget(edit_form.idimagen) }}
+
                 </div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="clearfix"></div>
 
-            <div class="col-md-4" style="padding-left: 120px;">
-                <a href="{{ path('admin_entrada') }}">
-                <div class="botonpanel">Regresar a lista</div>
-            </a>
-            </div>
-            <div class="col-md-4 text-center">
-                {{ form_widget(edit_form._token)}}
-                {{ form(edit_form)}}
-            </div>
-            <div class="col-md-4 pull-left">
-                {{ form(delete_form) }}
+
+                {#{{ form_row(form.nombre) }}
+                {{ form_row(form.titulo) }}
+                {{ form_row(form.descripcion) }}
+                {{ form_row(form.idcategoria) }}
+                {{ form_row(form.idproblema) }}
+                {{ form_row(form.file) }}#}
+                <!-- <ul class="record_actions">
+            <li>
+                <a href="{{ path('admin_subcategoria') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul> -->
+
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">{{ form_widget(edit_form.submit) }}</div>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ path('admin_entrada') }}">
+                        <div class="botonpanel">Regresar</div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+
+                </div>
+                <div class="clearfix"></div>
+
                 {{ form_end(edit_form) }}
-            </div> 
-
-            {#<div class="col-md-3"></div>#}
+            </div>
         </div>
     </div>
-
+    <div class="clearfix"></div>
 
     {% block javascripts_step %}
         <script type="text/javascript" src="{{ asset('Resources/jquery/jquery_1.11.3.js')}}"></script>
@@ -68,19 +82,22 @@
             $(document).ready(function () {
                 validarUsuario();
             });
+        </script>
+        <script>
             {{ tinymce_init() }}
         </script>
+
     {% endblock %}
+
 {% endblock %}
+{#<h1>Entrada creation</h1>
 
+    {{ form(form) }}
 
-{# {{ form(edit_form) }}
-
- <ul class="record_actions">
-     <li>
-         <a href="{{ path('admin_entrada') }}">
-             Back to the list
-         </a>
-     </li>
-     <li>{{ form(delete_form) }}</li>
- </ul>#}
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_entrada') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>#}

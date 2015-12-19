@@ -55,12 +55,13 @@ class CategoriaImagenController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             
-            $em->persist($entity);
+            
             //var_dump($entity->getImagenes());
             //die();
             $path = $this->container->getParameter('photo.galeriafotos');    
             $i=0;
-            foreach($entity->getImagenes() as $key => $row){
+            var_dump($entity);
+            foreach($entity->getImagenes() as $row){
                 //var_dump($row);    
                 //die();
                 
@@ -86,16 +87,22 @@ class CategoriaImagenController extends Controller
                     $i++;
                 
                 }
+                else{
+                    //var_dump($row);
+                    $entity->removeImagen($row);
+                    var_dump($entity);
+                    
+                }
                 //var_dump($row->getFile());  
             }
             
-            
+            $em->persist($entity);
             
             
             
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_categoriaimagen_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_categoriaimagen'));
         }
 
         return array(
@@ -267,8 +274,9 @@ class CategoriaImagenController extends Controller
         foreach ($originalImagenes as $row) {
                 $file_path = $path.'/'.$row->getNombre();
                     //echo '*'.$row->getNombre().'*';
-                if(file_exists($file_path) && $row->getNombre()!="") //unlink($file_path);
+                if(file_exists($file_path) && $row->getNombre()!="") //
                 if (false === $entity->getImagenes()->contains($row)) {
+                    unlink($file_path);
                     // remove the Task from the Tag
                     //$row->getIdcategoria()->removeImagen($row);
 
@@ -314,6 +322,10 @@ class CategoriaImagenController extends Controller
                     //$em->flush();
                     $i++;
 
+                }
+                else{
+                    $entity->removeImagen($row);
+                    
                 }
             
         }

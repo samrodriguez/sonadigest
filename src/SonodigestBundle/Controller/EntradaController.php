@@ -67,13 +67,16 @@ class EntradaController extends Controller
                     $entity->getIdimagen()->setIdEntrada($entity);
                     $entity->setFecha(new \DateTime('now'));
                     $entity->getIdimagen()->getFile()->move($path,$nombreArchivo);
-                    $em->persist($entity);
-                    $em->flush();
+                    
+                    
                 }
-                
-            return $this->redirect($this->generateUrl('admin_entrada_show', array('id' => $entity->getId())));
+            $em->persist($entity);
+            $em->flush();    
+            return $this->redirect($this->generateUrl('admin_entrada'));
+            
         }
-
+        
+        
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -211,7 +214,7 @@ class EntradaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-        if($entity->getIdimagen()->getFile()!=null){
+            if($entity->getIdimagen()->getFile()!=null){
                     $path = $this->container->getParameter('photo.imagenblog');
 
                     $fecha = date('Y-m-d His');
@@ -225,10 +228,10 @@ class EntradaController extends Controller
                     $entity->getIdimagen()->setIdEntrada($entity);
                     $entity->setFecha(new \DateTime('now'));
                     $entity->getIdimagen()->getFile()->move($path,$nombreArchivo);
-                    $em->persist($entity);
-                    $em->flush();
+                    
                 }
-
+            $em->persist($entity);
+            $em->flush();
             return $this->redirect($this->generateUrl('admin_entrada_edit', array('id' => $id)));
         }
 

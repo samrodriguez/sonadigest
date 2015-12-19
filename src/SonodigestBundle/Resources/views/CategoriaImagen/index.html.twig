@@ -1,41 +1,74 @@
-{% extends '::base.html.twig' %}
+{% extends 'SonodigestBundle:Layout:layoutpanel.html.twig' %}
+{% block titulo %}Lista de Entradas{% endblock %}
 
-{% block body -%}
-    <h1>CategoriaImagen list</h1>
+{% block bod -%}
+    {#<h1>Entrada list</h1>#}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_categoriaimagen_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_categoriaimagen_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_categoriaimagen_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
 
-        <ul>
+                <a href="{{ path('admin_categoriaimagen_new') }}">
+                    <div class="botonpanel">Crear nueva categoria</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="tablapanel">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <table class="table-bordered center" style="margin:0 auto; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Nombre</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for entity in entities %}
+                                        <tr>
+                                            
+                                            <td>{{ entity.nombre }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_categoriaimagen_edit', { 'id': entity.id }) }}">Modificar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#<div class="col-md-4"></div>
+    <div class="col-md-4"><div class="text-center">#}
+            {#<a href="{{ path('admin_categoria') }}">
+                <div class="botonpanel"> Regresar a la listaxx </div>
+            </a>#}
+            {#{{ form_widget(form.submit) }}#}
+            {#<a href="{{ path('admin_entrada_new') }}">
+                <div class="botonpanel">Create a new entry</div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4"></div>#}
+    {#<ul>
         <li>
-            <a href="{{ path('admin_categoriaimagen_new') }}">
+            <a href="{{ path('admin_entrada_new') }}">
                 Create a new entry
             </a>
         </li>
-    </ul>
-    {% endblock %}
+    </ul>#}
+{% endblock %}
+
+
