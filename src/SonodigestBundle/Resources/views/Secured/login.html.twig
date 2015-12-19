@@ -55,7 +55,7 @@
                             <img src="{{ asset('Photos/index/logo-01.png')}}" style="width: 300px; height: 60px;">
                     </p>
                     <div class="tab-pane fade in active" id="signin">
-                        <form action="{% block form_action %}{{ path("plusbelle_security_check") }}{% endblock %}" method="post" id="frmLogin">    
+                        <form action="{% block form_action %}{{ path("sonodigest_security_check") }}{% endblock %}" method="post" id="frmLogin">    
                               {#<p class="lead text-center">Sonodigest - El Salvador</p>#}
                               <div class="form-group">
                                   {% block alert -%}
@@ -76,8 +76,9 @@
                                 </div>
                               </div><!-- /.form-group -->
                               <div class="form-group clearfix">
-                                <div class="animated-hue pull-right">
-                                  <button id="btnSignin" type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                <div class="animated-hue text-center">
+                                        <a href="{{ path('admin_inicio') }}" class="btn btn-success"> Pagina principal</a>
+                                        <button id="btnSignin" type="submit" class="btn btn-primary">Iniciar sesión</button>
                                 </div>
                               </div><!-- /.form-group -->
                               <hr>

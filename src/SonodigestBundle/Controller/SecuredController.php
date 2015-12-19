@@ -16,7 +16,7 @@ class SecuredController extends Controller
 {
 
     /**
-     * @Route("/login", name="plusbelle_login")
+     * @Route("/login", name="sonodigest_login")
      * @Template()
      */
     public function loginAction(Request $request)
@@ -59,7 +59,7 @@ class SecuredController extends Controller
     }
 
     /**
-     * @Route("/login_check", name="plusbelle_security_check")
+     * @Route("/login_check", name="sonodigest_security_check")
      */
     public function securityCheckAction()
     {
@@ -68,7 +68,7 @@ class SecuredController extends Controller
     }
 
     /**
-     * @Route("/logout", name="plusbelle_logout")
+     * @Route("/logout", name="sonodigest_logout")
      */
     public function logoutAction()
     {
