@@ -10,19 +10,21 @@
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Galeria/fotos.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Problemadetalle/problemadetalle.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/CategoriaImagenController.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/ProblemaController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/CategoriaController.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/ProblemaController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Entity/Problema.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Tratamos/tratamos.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/app/config/routing.yml</file>
             <file>file:/C:/xampp/htdocs/sonodigest/web/Resources/js/shorten/shorten.js</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/CategoriaImagen/index.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Inicio/inicio.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Galeria/banner.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Problemadetalle/contenido.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/estadistica.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Tratamos/iniciolista.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/CategoriablogController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/app/AppKernel.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/CategoriaImagen/edit.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/TratamosController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/web/Resources/css/photoswipe.css</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Galeria/galeria.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/web/Resources/js/photoswipe/isotope.js</file>
@@ -30,8 +32,8 @@
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Entity/Entrada.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Ciruyproc/menu.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Ciruyproc/ciruyproc.html.twig</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/digit.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Entity/CategoriaImagen.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/digit.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Entity/Imagenblog.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Blog/blog.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Galeria/mostrarfotos.html.twig</file>
@@ -47,6 +49,7 @@
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/ProblemadetalleController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Form/CategoriaType.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/BlogController.php</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/TipoCarrusel/edit.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Controller/NosotrosController.php</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Galeria/galeriafotos.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/composer.json</file>
@@ -56,11 +59,10 @@
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Blog/contenido.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Fotos/fotos.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Entity/GaleriaImagenes.php</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Prototype/fotos.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Problema/show.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Layout/navigation.html.twig</file>
+            <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Tratamos/lista.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/web/Resources/css/default-skin/default-skin.css</file>
-            <file>file:/C:/xampp/htdocs/sonodigest/app/config/config.yml</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Ciruyproc/contenido.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Blog/contenidofiltro.html.twig</file>
             <file>file:/C:/xampp/htdocs/sonodigest/src/SonodigestBundle/Resources/views/Problemadetalle/banner.html.twig</file>

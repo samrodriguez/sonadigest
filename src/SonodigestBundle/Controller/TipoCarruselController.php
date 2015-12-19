@@ -266,7 +266,9 @@ class TipoCarruselController extends Controller
         
         
             foreach ($originalImagenes as $row) {
+                $file_path = $path.'/'.$row->getImagen();
                 if (false === $entity->getPlacas()->contains($row)) {
+                    unlink($file_path);
                     // remove the Task from the Tag
                     //$row->getIdcategoria()->removeImagen($row);
 

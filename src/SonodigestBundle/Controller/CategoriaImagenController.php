@@ -267,8 +267,9 @@ class CategoriaImagenController extends Controller
         foreach ($originalImagenes as $row) {
                 $file_path = $path.'/'.$row->getNombre();
                     //echo '*'.$row->getNombre().'*';
-                if(file_exists($file_path) && $row->getNombre()!="") //unlink($file_path);
+                if(file_exists($file_path) && $row->getNombre()!="") //
                 if (false === $entity->getImagenes()->contains($row)) {
+                    unlink($file_path);
                     // remove the Task from the Tag
                     //$row->getIdcategoria()->removeImagen($row);
 
