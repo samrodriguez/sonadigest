@@ -2,6 +2,7 @@
 
 namespace SonodigestBundle\Entity;
 
+use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="rol")
  * @ORM\Entity
  */
-class Rol
+class Rol implements RoleInterface
 {
     /**
      * @var integer
@@ -24,26 +25,11 @@ class Rol
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=100, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=30, nullable=false)
      */
     private $nombre;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="idrol")
-     */
-    private $idusuario;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idusuario = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
+   
     /**
      * Get id
      *
@@ -78,41 +64,12 @@ class Rol
         return $this->nombre;
     }
 
-    /**
-     * Add idusuario
-     *
-     * @param \SonodigestBundle\Entity\Usuario $idusuario
-     *
-     * @return Rol
-     */
-    public function addIdusuario(\SonodigestBundle\Entity\Usuario $idusuario)
-    {
-        $this->idusuario[] = $idusuario;
-
-        return $this;
+    public function getRole() {
+            return $this->getNombre();
     }
-
-    /**
-     * Remove idusuario
-     *
-     * @param \SonodigestBundle\Entity\Usuario $idusuario
-     */
-    public function removeIdusuario(\SonodigestBundle\Entity\Usuario $idusuario)
-    {
-        $this->idusuario->removeElement($idusuario);
-    }
-
-    /**
-     * Get idusuario
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdusuario()
-    {
-        return $this->idusuario;
-    }
-    
     public function __toString() {
-        return $this->nombre;
+        return $this->getRole();
     }
+     
+   
 }

@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Categoria controller.
  *
- * @Route("/admin/inicio")
+ * @Route("/inicio")
  */
 class InicioController extends Controller{
     

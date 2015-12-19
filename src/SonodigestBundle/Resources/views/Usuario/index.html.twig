@@ -17,7 +17,7 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('admin_usuario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.username }}</td>
                 <td>{{ entity.password }}</td>
                 <td>{{ entity.salt }}</td>
                 <td>

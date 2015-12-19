@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Categoria controller.
  *
- * @Route("/admin/ciruyproc")
+ * @Route("/ciruyproc")
  */
 class CiruyprocController extends Controller{
     
