@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Categoria controller.
  *
- * @Route("/admin/galeria")
+ * @Route("/galeria")
  */
 class GaleriaController extends Controller{
     

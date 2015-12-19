@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Bienvenido a Sonodigest - El Salvador</title>
+
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Francois+One|Ubuntu+Condensed|Roboto:300' rel='stylesheet' type='text/css'>
+
+        <!-- Bootstrap -->
+      {#  <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/dependencies.css">
+        <link rel="stylesheet" href="css/wrapkit.css">
+        <link rel="stylesheet" href="css/pages.css"> #}
+        <link rel="stylesheet" href="{{ asset('Resources/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('Resources/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('Resources/css/dependencies.css') }}">
+        <link rel="stylesheet" href="{{ asset('Resources/css/wrapkit.css') }}">
+        <link rel="stylesheet" href="{{ asset('Resources/css/pages.css') }}">
+        <style type="text/css">
+            /* The white background content wrapper */
+            .login-form  {
+             margin: 25px auto;
+             padding: 10px;
+             -webkit-border-radius: 10px 10px 10px 10px;
+                -moz-border-radius: 10px 10px 10px 10px;
+                     border-radius: 10px 10px 10px 10px;
+             -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.75);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.75);
+                     box-shadow: 0 1px 2px rgba(0,0,0,.75);
+             border: 2px solid rgba(0, 0, 0, 0.10); 
+             background-color: rgba(0, 0, 0, 0.90);
+             color: #FFFFFF;
+            }
+            .view-login {
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
+            }
+        </style>
+
+    </head>
+    <body class="bg-grd-blue">
+        <div class="container-fluid">
+        {% block body -%}
+    
+            <main class="signin-wrapper">
+                <div class="tab-content">
+                    <p class="text-center p-4x">
+                            <img src="{{ asset('Photos/index/logo-01.png')}}" style="width: 300px; height: 60px;">
+                    </p>
+                    <div class="tab-pane fade in active" id="signin">
+                        <form action="{% block form_action %}{{ path("plusbelle_security_check") }}{% endblock %}" method="post" id="frmLogin">    
+                              {#<p class="lead text-center">Sonodigest - El Salvador</p>#}
+                              <div class="form-group">
+                                  {% block alert -%}
+                                      {% if error %}
+                                          <div style="color:red;margin-bottom: 20px;">{{ error.message }}</div>
+                                      {% endif %}
+                                  {% endblock %}    
+                                  <div class="input-group input-group-in">
+                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Usuario" />
+                                  </div>
+                              </div><!-- /.form-group -->
+                              <div class="form-group">
+                                <div class="input-group input-group-in">
+                                  <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                  {#<input name="passwd" id="passwd" class="form-control" placeholder="Password" type="password">#}
+                                  <input class="form-control" type="password" id="password" name="_password" placeholder="Contraseña"/>
+                                </div>
+                              </div><!-- /.form-group -->
+                              <div class="form-group clearfix">
+                                <div class="animated-hue pull-right">
+                                  <button id="btnSignin" type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                </div>
+                              </div><!-- /.form-group -->
+                              <hr>
+                        </form><!-- /#signinForm -->
+                  </div><!-- /.tab-pane -->
+
+
+                </div><!-- /.tab-content -->
+            </main>
+ 
+{% endblock %}
+</div>
+
+{% block javascripts %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('Resources/js/bootstrap.js') }}"></script>  
+    <script src="{{ asset('Resources/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('Resources/js/tooltip.js') }}"></script> 
+    <script src="{{ asset('Resources/js/popover.js') }}"></script> 
+    {#<script src="js/bootstrap.js"></script>#}
+{% endblock %}  
+{% block footer %}{% endblock %}
+</body>
+</html>

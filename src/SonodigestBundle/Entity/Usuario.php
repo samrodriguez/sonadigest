@@ -1,78 +1,74 @@
 <?php
 
 namespace SonodigestBundle\Entity;
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", indexes={@ORM\Index(name="fk_usuario_persona_idx", columns={"idPersona"})})
  * @ORM\Entity
+ * @ORM\Table(name="usuario")
  */
-class Usuario
+class Usuario implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=30, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=40, nullable=false)
      */
-    private $nombre;
+    private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     * @ORM\Column(name="salt", type="string", length=255, nullable=false)
      */
     private $salt;
 
     /**
      * @var \Persona
      *
-     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\ManyToOne(targetEntity="Persona", inversedBy="usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idPersona", referencedColumnName="id")
      * })
      */
-    private $idpersona;
+    private $persona;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Rol", inversedBy="idusuario")
+     * @ORM\ManyToMany(targetEntity="Rol")
      * @ORM\JoinTable(name="rolUsuario",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idUsuario", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idRol", referencedColumnName="id")
-     *   }
+     *     joinColumns={@ORM\JoinColumn(name="idUsuario", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="idRol", referencedColumnName="id")}
      * )
      */
-    private $idrol;
+    private $user_roles;
 
+    private $isEnabled;// = false; 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idrol = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user_roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -87,27 +83,27 @@ class Usuario
     }
 
     /**
-     * Set nombre
+     * Set username
      *
-     * @param string $nombre
+     * @param string $username
      *
      * @return Usuario
      */
-    public function setNombre($nombre)
+    public function setUsername($username)
     {
-        $this->nombre = $nombre;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get nombre
+     * Get username
      *
      * @return string
      */
-    public function getNombre()
+    public function getUsername()
     {
-        return $this->nombre;
+        return $this->username;
     }
 
     /**
@@ -159,60 +155,141 @@ class Usuario
     }
 
     /**
-     * Set idpersona
+     * Set persona
      *
-     * @param \SonodigestBundle\Entity\Persona $idpersona
+     * @param \SonodigestBundle\Entity\Persona $persona
      *
      * @return Usuario
      */
-    public function setIdpersona(\SonodigestBundle\Entity\Persona $idpersona = null)
+    public function setPersona(\SonodigestBundle\Entity\Persona $persona = null)
     {
-        $this->idpersona = $idpersona;
+        $this->persona = $persona;
 
         return $this;
     }
 
     /**
-     * Get idpersona
+     * Get persona
      *
      * @return \SonodigestBundle\Entity\Persona
      */
-    public function getIdpersona()
+    public function getPersona()
     {
-        return $this->idpersona;
+        return $this->persona;
     }
 
     /**
-     * Add idrol
+     * Add rol
      *
-     * @param \SonodigestBundle\Entity\Rol $idrol
+     * @param \SonodigestBundle\Entity\Rol $userRoles
      *
      * @return Usuario
      */
-    public function addIdrol(\SonodigestBundle\Entity\Rol $idrol)
+    public function addRol(\SonodigestBundle\Entity\Rol $userRoles)
     {
-        $this->idrol[] = $idrol;
+        $this->user_roles[] = $userRoles;
 
         return $this;
     }
-
+    
     /**
-     * Remove idrol
+     * Remove role
      *
-     * @param \SonodigestBundle\Entity\Rol $idrol
+     * @param \SonodigestBundle\Entity\Rol $userRoles
      */
-    public function removeIdrol(\SonodigestBundle\Entity\Rol $idrol)
+    public function removeRole(\SonodigestBundlerol_usuario\Entity\Rol $userRoles)
     {
-        $this->idrol->removeElement($idrol);
+        $this->user_roles->removeElement($userRoles);
+    }
+
+    
+    
+    public function setUserRoles($roles) {
+        $this->user_roles = $roles;
     }
 
     /**
-     * Get idrol
+     * Get user_roles
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection
      */
-    public function getIdrol()
+    public function getUserRoles()
     {
-        return $this->idrol;
+        return $this->user_roles;
+    }
+ 
+    /**
+     * Get roles
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getRoles()
+    {
+        return $this->user_roles->toArray(); //IMPORTANTE: el mecanismo de seguridad de Sf2 requiere ésto como un array
+    }
+    
+    /**
+     * Compares this user to another to determine if they are the same.
+     *
+     * @param UserInterface $user The user
+     * @return boolean True if equal, false othwerwise.
+     */
+    public function equals(UserInterface $user) {
+        return md5($this->getUsername()) == md5($user->getUsername());
+ 
+    }
+ 
+    /**
+     * Erases the user credentials.
+     */
+    public function eraseCredentials() {
+ 
+    }
+    
+    /*public function __toString() {
+        return $this->username ? $this->username : '';
+    }*/
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
+    }
+    
+    public function isAccountNonExpired()
+    {
+            return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+            return  !$this->isEnabled;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+            return true;
+    }
+
+    public function isEnabled()
+    {
+        return  $this->isEnabled = true;
+    }
+    
+     public function __toString() {
+    return $this->username ? $this->username : '';
     }
 }

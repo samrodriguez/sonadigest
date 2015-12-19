@@ -50,6 +50,7 @@ class UsuarioController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->setSecurePassword($entity);
             $em->persist($entity);
             $em->flush();
 
@@ -188,12 +189,18 @@ class UsuarioController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
+        
+        $current_pass = $entity->getPassword();
+        
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            if ($current_pass != $entity->getPassword()) {
+                $this->setSecurePassword($entity);
+            }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_usuario_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_usuario'));
         }
 
         return array(
@@ -243,5 +250,12 @@ class UsuarioController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    
+    private function setSecurePassword(&$entity) {
+        $entity->setSalt(md5(time()));
+        $encoder = new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder('sha512', true, 10);
+        $password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
+        $entity->setPassword($password);
     }
 }
