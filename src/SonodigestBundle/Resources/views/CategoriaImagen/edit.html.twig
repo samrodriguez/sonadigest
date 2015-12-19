@@ -26,7 +26,7 @@
                         position:absolute;
                     }
 
-                    .collection > div > div > div >a {
+                    .collection > div:nth-child(1) > div > div >a {
                         display: none;
                         
                     }
@@ -81,6 +81,7 @@
                     
                     
                     
+                    
                 </style>
                 {%- endblock %}
                 {%- endblock%}
@@ -114,7 +115,7 @@
                                     <div class="col-md-4">
                                       
                                          <div class="panel-body">
-                                             <img class="archivo" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{imagenes[key].nombre}}" alt="dummy image">
+                                             <img class="archivo" itemprop="thumbnail" src="{{ asset('Photos/galeriafotos/')}}{{imagenes[key].nombre}}" alt="">
                                                 {#{{ form_row(imagen.nombre) }} #}
                                                 {{ form_row(imagen) }} 
 
@@ -134,7 +135,7 @@
                     </li>
                 </ul>#}
                         <div class="col-md-12 text-center" style="margin-top: 75px;">
-                            {{ form_widget(edit_form.submit) }}
+                            <a href="{{path('admin_categoriaimagen')}}" class="btn btn-default btn-sm"> Regresar al listado</a> {{ form_widget(edit_form.submit) }}
                         </div>
                 {{ form_widget(edit_form._token) }}
             {{ form_end(edit_form) }}   
@@ -161,6 +162,7 @@
                     <script src="{{asset('Resources/js/bootstrap.js')}}"></script>
                     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+                    <script type="text/javascript" src="{{ asset('Resources/validaciones/categoriaimagen.js')}}" ></script>
     
     <script>
 
@@ -199,40 +201,36 @@
         collectionHolder.find('.panel-body').each(function() {
             addTagFormDeleteLink($(this));
             $('.link').css('margin-top','5px');
+        });
+
+        // add the "add a tag" anchor and li to the tags ul
+        collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        collectionHolder.data('index', collectionHolder.find(':input').length);
+
+        //Identificar que form esta activo
+        /*var editar=$('div.placas').attr('id');
+        if(editar!='editar_usuario'){*/
+            //addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
+
+        //}
+
+
+
+        $addTagLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see next code block)
+            addTagForm(collectionHolder, $newLinkLi);
+            // $('.btn_radio').attr('name', 'rol_predet');
+            
+        });
+    
+        
     });
-    
-    
-                
-
-    
-
-    // add the "add a tag" anchor and li to the tags ul
-    collectionHolder.append($newLinkLi);
-   
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    collectionHolder.data('index', collectionHolder.find(':input').length);
-    
-    //Identificar que form esta activo
-    /*var editar=$('div.placas').attr('id');
-    if(editar!='editar_usuario'){*/
-        //addTagForm(collectionHolder, $newLinkLi);   //Muestra un formulario en la carga de la página nuevo
-       
-    //}
-    
-
-
-    $addTagLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
-
-        // add a new tag form (see next code block)
-        addTagForm(collectionHolder, $newLinkLi);
-        // $('.btn_radio').attr('name', 'rol_predet');
-    });
-    
-    
-});
 
 
 function addTagForm(collectionHolder, $newLinkLi) {
@@ -257,7 +255,7 @@ function addTagForm(collectionHolder, $newLinkLi) {
 
     // add a delete link to the new form
     addTagFormDeleteLink($newFormLi);
-     
+    
 }
 
 

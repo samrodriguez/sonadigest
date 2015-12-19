@@ -15,7 +15,10 @@ class CategoriaImagenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
+            ->add('nombre','text',array('label' => 'Nombres','required'=>false,
+                    'attr'=>array(
+                    'class'=>'nombresCategoriaImagen'
+                    )))
             ->add('imagenes','collection',array(
                 'type' => new GaleriaImagenesType(),
                 'label'=>' ',
