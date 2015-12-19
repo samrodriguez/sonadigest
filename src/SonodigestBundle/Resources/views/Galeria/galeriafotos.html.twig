@@ -55,11 +55,20 @@
                 background: #FFF;
                 color: #76B9C4;
             }
+            .botonpanel{
+                padding: 10px;
+                border-radius: 5px;
+{#                margin:25px 5px -15px 5px;#}
+                margin-top:35px;
+                border:1px solid #76B9C4;
+                width:100%;
+                
+            }
             .botonpanel:hover{
                 background: #76B9C4;
                 opacity:0.5;
                 color:#FFF;
-                margin-top: 20px;
+                
             }
         </style>
                 {%- endblock %}
@@ -88,14 +97,20 @@
                     
                     
 {% block fotos_filtro %}
-    <div class="row">
-        <div class="container">
-            <div class="col-md-3"></div>
-            <div class="col-md-1 text-center botonpanel active " id="0" style="padding: 10px; border-radius: 5px; margin:25px 5px -15px 5px; border:1px solid #76B9C4;"> Todas</div>
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="clearfix"></div>
+            <div class="col-md-2">
+                <div class="botonpanel active ">Todas</div>
+            </div>
             {% for categoriaImagen in categoriasImagenes %}
-                <div class="col-md-1 text-center botonpanel inactive" id="{{categoriaImagen.id}}" style="padding: 10px; border-radius: 5px; margin:25px 5px -15px 5px; border:1px solid #76B9C4;">{{categoriaImagen.nombre}}</div>
+                <div class="col-md-2">
+                    <div class="botonpanel inactive" id="{{categoriaImagen.id}}" >
+                        {{categoriaImagen.nombre}}
+                    </div>
+                </div>
             {% endfor %}
-            <div class="col-md-3"></div>
         </div>
     </div>
 {% endblock %}
