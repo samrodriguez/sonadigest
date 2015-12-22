@@ -32,12 +32,12 @@
             }}
             
             | Por: {{entrada.escritapor}} | Categoria: {{entrada.idcategoria}}</p>
-        <div style="font-weight: 300; font-size: 13px;" class="contenidoEntrada" id="{{entrada.id}}">
+        <div style="font-weight: 300; font-size: 13px; height: 20px; overflow: hidden;" class="contenidoEntrada" id="{{entrada.id}}">
             
             {#{{ entrada.contenido|length > 150 ? entrada.contenido|slice(0, 150) ~ '...' : entrada.contenido  }}#}
-            {{ entrada.contenido}}
+            {{ entrada.contenido | raw}}
         </div>
-        <div class="pull-right"><button class="btn text-uppercase blogboton">Leer más</button></div>
+        <div class="pull-right"><button class="btn text-uppercase blogboton">Ver más</button></div>
         <div style="margin-top: 60px;"></div>
         <hr>
         <!-- Fin Blog Item -->
@@ -52,11 +52,27 @@
                     
                     <script>
                             
-                            $(".contenidoEntrada").shorten({
-                                "showChars" : 150,
-                                "moreText"  : "",
-                                "lessText"  : "",
-                            });
+                            $('.blogboton').on("click", function(){
+                                    if($(this).html()=='Ver más'){
+                                        $(this).parent().prev().css('height','100%');
+                                        $(this).parent().prev().children().css('height','100%');
+                                    }
+                                    else{
+                                        $(this).parent().prev().css('height','20px');
+                                        $(this).parent().prev().children().css('height','20px');
+                                    }
+                                    
+                                    if($(this).html()=="Ver menos")
+                                       $(this).html("Ver más");
+                                    else
+                                       $(this).html("Ver menos");
+                                    var link = $(this).parent().prev().children('.morecontent') .children('.morelink');
+                                    //alert(link);
+                                    $(link).click();
+
+                                    
+
+                                });
                             
                             
                            

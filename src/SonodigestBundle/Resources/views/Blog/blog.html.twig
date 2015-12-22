@@ -71,16 +71,7 @@
                                 return false;
                             });
                             
-                            $(document).on("click",".blogboton", function(){
-                                if($(this).html()=="Ver menos")
-                                   $(this).html("Ver más");
-                                else
-                                   $(this).html("Ver menos");
-                                var link = $(this).parent().prev().children('.morecontent') .children('.morelink');
-                                //alert(link);
-                                $(link).click();
-                               
-                            });
+                            
                             
                             
                         });
